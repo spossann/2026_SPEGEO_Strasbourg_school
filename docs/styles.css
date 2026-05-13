@@ -19,14 +19,7 @@ h2 {
     font-size: 80% !important;
 }
 
-/* Add spacing after inline math */
-.math.inline {
-    margin-right: 0.5em;
-}
-
-code.math {
-    margin-right: 0.25em;
-}
+/* Keep inline math spacing default to avoid punctuation-dependent artifacts. */
 
 /* Slightly tighten vertical spacing around display math blocks ($$...$$). */
 .reveal .slides section p:has(> .math.display) {
