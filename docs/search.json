@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html#course-overview",
+    "href": "index.html#course-overview",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Course overview",
+    "text": "Course overview\n\n\nPart I: Theory - From Lagrangian to Eulerian coordinates via Euler-Poincaré reduction\n\nVariational principles vs. Newtonian mechanics\nVariational principles in fluid mechanics (field theories)\nLagrangian vs. Eulerian descriptions of fluid motion\nEuler-Poincaré reduction\n\n\n\n\n\nPart II: Discretization - Particle methods for fluid Lagrangians\n\nFunctions (0-forms) and volume forms\nDiscrete Lagrangians\nSmoothed-particle hydrodynamics (SPH)\n\n\n\n\n\nPart III: Software - Solving meshfree discretizations with Struphy\n\nStruphy: an open-source Python package for solving PDEs\nHands-on session: Implementing and running SPH simulations with Struphy"
+  },
+  {
+    "objectID": "index.html#key-ideas-of-part-i",
+    "href": "index.html#key-ideas-of-part-i",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Key ideas of Part I",
+    "text": "Key ideas of Part I\n\n\nVariational principles vs. Newtonian mechanics\n\n\\[\n\\frac{\\mathrm d}{\\mathrm dt} \\frac{\\partial L}{\\partial \\dot x} - \\frac{\\partial L}{\\partial x} = 0\\quad \\Leftrightarrow \\quad m \\ddot x = -\\frac{\\partial V}{\\partial x}\n\\]\n\n\n\nVariational principles in fluid mechanics (field theories)\n\n\\[\n\\mathcal A(\\mathbf u, \\rho, s) = \\int_0^T \\int \\left( \\frac{|\\mathbf u|^2}{2} - \\mathcal U(\\rho, s) \\right) \\rho\\, d\\mathbf x\\, dt\\,,\\qquad \\delta \\mathcal A = ?\n\\]\n\\(\\mathbf u (t,\\mathbf x)\\) fluid velocity, \\(\\rho(t,\\mathbf x)\\) mass density, \\(s(t,\\mathbf x)\\) entropy density\n\n\n\nLagrangian vs. Eulerian descriptions of fluid motion\n\n\\[\n\\frac{\\mathrm d}{\\mathrm dt} \\mathbf x(t, \\mathbf x_0) = \\mathbf u(t, \\mathbf x(t, \\mathbf x_0))\\,,\\qquad \\mathbf x(0, \\mathbf x_0) = \\mathbf x_0 \\quad \\Leftrightarrow \\quad\n\\left\\{\n  \\begin{aligned}\n    &\\frac{\\partial}{\\partial t} \\rho + \\nabla \\cdot (\\rho \\mathbf u) = 0\n    \\\\\n   &\\frac{\\partial}{\\partial t} \\mathbf u + (\\mathbf u \\cdot \\nabla) \\mathbf u = - \\frac{1}{\\rho}\\nabla V\n  \\end{aligned}\n\\right.\n\\]\n\n\n\nEuler-Poincaré reduction\n\n\\[\n\\mathcal A(\\mathbf x, \\dot{\\mathbf x}) \\Leftrightarrow \\mathcal A(\\mathbf u, \\rho, s)\n\\]"
+  },
+  {
+    "objectID": "index.html#key-ideas-of-part-ii",
+    "href": "index.html#key-ideas-of-part-ii",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Key ideas of Part II",
+    "text": "Key ideas of Part II\n\n\nFunctions (0-forms) and volume forms\n\n\\[\n\\rho: \\mathbf x \\in \\Omega \\mapsto \\rho(\\mathbf x) \\in \\mathbb R,\\qquad \\rho^V: \\Omega \\subset_\\textrm{open} \\mathbb R^3 \\to \\mathbb R,\\quad \\int_\\Omega \\rho^V(t, \\mathbf x) \\,\\mathrm d \\mathbf x\n\\]\n\n\n\nDiscrete Lagrangians\n\n\\[\n\\rho(t, \\mathbf x) \\approx \\rho_h(t, \\mathbf x) = \\sum_{i=1}^N w_i \\, \\delta(\\mathbf x - \\mathbf x_i(t)) \\quad \\Rightarrow \\quad \\mathcal A(\\mathbf u, \\rho, s) \\approx \\mathcal A_h(\\mathbf x_1, \\ldots, \\mathbf x_N, \\dot{\\mathbf x}_1, \\ldots, \\dot{\\mathbf x}_N)\n\\]\n\n\n\nSmoothed-particle hydrodynamics (SPH)\n\n\\[\nA(\\mathbf x) = \\int A(\\mathbf y) \\delta(\\mathbf x - \\mathbf y) \\, d\\mathbf y \\approx \\int A(\\mathbf y) W(\\mathbf x - \\mathbf y, h) \\, d\\mathbf y \\approx \\sum_{i=1}^N w_i A(\\mathbf x_i) W(\\mathbf x - \\mathbf x_i, h)\n\\]"
+  },
+  {
+    "objectID": "index.html#key-ideas-of-part-iii",
+    "href": "index.html#key-ideas-of-part-iii",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Key ideas of Part III",
+    "text": "Key ideas of Part III\n\n\nStruphy: an open-source Python package for solving PDEs\n\n\n\nFAIR software: Freely available, Accessible, Interoperable, Reusable\nAvailable on GitHub (https://github.com/struphy-hub/struphy) and PyPI\nBuilt on top of Pyccel for high-performance code generation\n\n\n\n\nHands-on session: Implementing and running SPH simulations with Struphy\n\n\nSetting up a simple SPH simulation of the Euler equations\nExploring the Struphy API and documentation\nRunning and visualizing results with Struphy’s built-in tools\n\nTry installing Struphy according to the instructions in the README before the hands-on session."
+  }
+]

@@ -1,0 +1,46 @@
+#title-slide {
+    .title { color: #2c3e50; font-family: "Fira Sans", sans-serif; font-weight: 600; }
+    .subtitle { color: #3498db; font-weight: 600;}
+    .author { color: #95a5a6; letter-spacing: 0.03em; }
+}
+
+h1.title {
+  background-image: url(dog-cartoon-struphy.jpg), url(MPI_PP_Logo_Vertical_cmyk-crop.jpg);
+  background-repeat: no-repeat;
+  background-position: 5% -14%, 97% 5%;
+  background-size: 170px, 202px;
+}
+
+h2 {
+    color: #2c3e50 !important;
+}
+
+.MathJax {
+    font-size: 80% !important;
+}
+
+/* Add spacing after inline math */
+.math.inline {
+    margin-right: 0.5em;
+}
+
+code.math {
+    margin-right: 0.25em;
+}
+
+/* Slightly tighten vertical spacing around display math blocks ($$...$$). */
+.reveal .slides section p:has(> .math.display) {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+.reveal .slides section p > .math.display {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+/* Shift display equations left to compensate for MathJax 2's right-side
+   equation-number padding, so they appear visually centered. */
+.reveal .slides section .MathJax_Display {
+    margin-left: -2em !important;
+}
