@@ -196,14 +196,14 @@
 <p><span class="math display">\[
 \mathcal A(\mathbf u, \rho, s) = \int_0^T \int \left( \frac{|\mathbf u|^2}{2} - \mathcal U(\rho, s) \right) \rho\, d\mathbf x\, dt\,,\qquad \delta \mathcal A = ?
 \]</span></p>
-<p><span class="math inline">\(\mathbf u (t,\mathbf x)\)</span> fluid velocity, <span class="math inline">\(\rho(t,\mathbf x)\)</span> mass density, <span class="math inline">\(s(t,\mathbf x)\)</span> entropy density</p>
+<p><span class="math inline">\(\mathbf u (t,\mathbf x)\,\,\,\)</span> fluid velocity, <span class="math inline">\(\rho(t,\mathbf x)\,\,\,\)</span> mass density, <span class="math inline">\(s(t,\mathbf x)\,\,\,\)</span> entropy density</p>
 </div>
 <div class="fragment">
 <ol start="3" type="1">
 <li><em>Lagrangian vs.&nbsp;Eulerian descriptions of fluid motion</em></li>
 </ol>
 <p><span class="math display">\[
-\frac{\mathrm d}{\mathrm dt} \mathbf x(t, \mathbf x_0) = \mathbf u(t, \mathbf x(t, \mathbf x_0))\,,\qquad \mathbf x(0, \mathbf x_0) = \mathbf x_0 \quad \Leftrightarrow \quad
+\frac{\mathrm d^2}{\mathrm dt^2} \Phi_t(\mathbf x_0) = -\frac 1m \nabla V(\Phi_t(\mathbf x_0))\,,\qquad \Phi_0(\mathbf x_0) = \mathbf x_0 \quad \Leftrightarrow \quad
 \left\{
   \begin{aligned}
     &amp;\frac{\partial}{\partial t} \rho + \nabla \cdot (\rho \mathbf u) = 0
@@ -218,9 +218,8 @@
 <li><em>Euler-Poincaré reduction</em></li>
 </ol>
 <p><span class="math display">\[
-\mathcal A_\textrm{Lagrange}(\mathbf x, \dot{\mathbf x}) \Leftrightarrow \mathcal A_{Euler}(\mathbf u, \rho, s)
+\mathcal A_\textrm{Lagrange}(\Phi_t, \dot{\Phi}_t) \Leftrightarrow \mathcal A_{Euler}(\mathbf u, \rho, s)
 \]</span></p>
-<!-- ::: -->
 <!-- ::: {style="width: 80%; margin: 0 auto; text-align: left; border: 2px solid #2c3e50; padding: 1.0em; border-radius: 8px; background-color: rgba(52, 152, 219, 0.05);"}
 
 Euler equations extremize the action functional
@@ -241,7 +240,7 @@ $\mathbf u (t,\mathbf x)$ fluid velocity, $\rho(t,\mathbf x)$ mass density, $s(t
 <li><em>Functions (0-forms) and volume forms</em></li>
 </ol>
 <p><span class="math display">\[
-\rho: \mathbf x \in \Omega \mapsto \rho(\mathbf x) \in \mathbb R,\qquad \rho^V: \Omega \subset_\textrm{open} \mathbb R^3 \to \mathbb R,\quad \int_\Omega \rho^V(t, \mathbf x) \,\mathrm d \mathbf x
+\rho:\quad \mathbf x \in \Omega \mapsto \rho(\mathbf x) \in \mathbb R,\qquad\quad \rho^\textrm{vol}:\quad \Omega \subset_\textrm{open} \mathbb R^3 \mapsto \int_\Omega \rho^{\textrm{vol}}(\mathbf x) \,\mathrm d \mathbf x \in \mathbb R
 \]</span></p>
 </div>
 <div class="fragment">
@@ -332,11 +331,11 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 \]</span></p>
 <p>consider a family of perturbed trajectories</p>
 <p><span class="math display">\[
-\mathbf x_\varepsilon(t) = \mathbf x(t) + \varepsilon\,\boldsymbol\eta(t),
+\mathbf x_\varepsilon(t) = \mathbf x(t) + \varepsilon\,\delta \mathbf x(t),
 \qquad
-\boldsymbol\eta(t_0)=\boldsymbol\eta(t_1)=\mathbf 0.
+\delta \mathbf x(t_0)=\delta \mathbf x(t_1)=\mathbf 0.
 \]</span></p>
-<div id="5f184d3b" class="cell" data-execution_count="1">
+<div id="7f449f88" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -345,26 +344,49 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 </div>
 </div>
 </div>
-<p>The first variation in direction <span class="math inline">\(\boldsymbol\eta\)</span> is defined by</p>
+<p>The first variation in direction <span class="math inline">\(\delta \mathbf x\)</span> is defined by</p>
 <p><span class="math display">\[
-\delta \mathcal A[\mathbf x;\boldsymbol\eta]
+\delta \mathcal A[\mathbf x;\delta \mathbf x]
+:= \lim_{\varepsilon\to 0}\frac{\mathcal A[\mathbf x_\varepsilon] - \mathcal A[\mathbf x]}{\varepsilon}\,,
+\]</span></p>
+<p>or, in short,</p>
+<p><span class="math display">\[
+\delta \mathcal A[\mathbf x;\delta \mathbf x]
 := \left.\frac{\mathrm d}{\mathrm d\varepsilon}\mathcal A[\mathbf x_\varepsilon]\right|_{\varepsilon=0}.
 \]</span></p>
-<p>Critical trajectories satisfy</p>
+<p>Example:</p>
 <p><span class="math display">\[
-\delta \mathcal A[\mathbf x;\boldsymbol\eta] = 0
-\quad\text{for all admissible }\boldsymbol\eta.
+\mathcal A[\mathbf x] = \int_{t_0}^{t_1} L(\mathbf x,\dot{\mathbf x},t)\,\mathrm dt\,,
 \]</span></p>
-<p><strong>Derive the Euler-Lagrange equations from the previous page by computing <span class="math inline">\(\delta \mathcal A\,\)</span> and applying integration by parts.</strong></p>
+<p>then</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta \mathcal A[\mathbf x;\delta \mathbf x]
+&amp;= \left.\frac{\mathrm d}{\mathrm d\varepsilon}\int_{t_0}^{t_1} L \left(\mathbf x_\varepsilon,\frac{\mathrm d \mathbf x_\varepsilon}{\mathrm d t},t \right)\,\mathrm dt\right|_{\varepsilon=0}
+\\[1mm]
+&amp;=\left.\int_{t_0}^{t_1} \left(\frac{\partial L}{\partial \mathbf x}\cdot \frac{\mathrm d}{\mathrm d\varepsilon}\mathbf x_\varepsilon + \frac{\partial L}{\partial \dot{\mathbf x}}\cdot \frac{\mathrm d}{\mathrm d\varepsilon}\frac{\mathrm d \mathbf x_\varepsilon}{\mathrm d t}\right)\,\mathrm dt\right|_{\varepsilon=0}
+\\[1mm]
+&amp;=\int_{t_0}^{t_1} \left(\frac{\partial L}{\partial \mathbf x}\cdot \delta \mathbf{x} + \frac{\partial L}{\partial \dot{\mathbf x}}\cdot \frac{\mathrm d \delta \mathbf x}{\mathrm dt}\right)\,\mathrm dt
+\\[1mm]
+&amp;=\int_{t_0}^{t_1} \left(\frac{\partial L}{\partial \mathbf x} - \frac{\mathrm d}{\mathrm dt}\frac{\partial L}{\partial \dot{\mathbf x}}\right) \cdot \delta \mathbf{x}\,\mathrm dt + \left.\frac{\partial L}{\partial \dot{\mathbf x}}\cdot \delta \mathbf x\right|_{t_0}^{t_1}
+\end{aligned}
+\]</span></p>
+<p><em>Hamilton’s principle</em> states that critical trajectories satisfy</p>
+<p><span class="math display">\[
+\delta \mathcal A[\mathbf x;\delta \mathbf x] = 0
+\quad\text{for all admissible }\delta \mathbf x.
+\]</span></p>
 </section>
 <section id="b.-why-use-variational-principles" class="slide level2">
 <h2>1b. Why use variational principles?</h2>
+<div class="fragment">
 <ul>
 <li>One scalar object generates the full dynamics:</li>
 </ul>
 <p><span class="math display">\[
-\mathcal A[\mathbf x] = \int_{t_0}^{t_1} L\,\mathrm dt
+\mathcal A[\mathbf x] = \int_{t_0}^{t_1} L(\mathbf x,\dot{\mathbf x},t)\,\mathrm dt
 \]</span></p>
+</div>
 <div class="fragment">
 <ul>
 <li>Constraints are handled systematically, for example with multipliers:</li>
@@ -383,22 +405,22 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 </div>
 <div class="fragment">
 <ul>
-<li>This is the key bridge to structure-preserving discretizations in Part II.</li>
+<li>Leads to structure-preserving discretizations, discussed in Part II.</li>
 </ul>
 </div>
 </section>
-<section id="c.-conservation-laws-from-variational-structure" class="slide level2">
-<h2>1c. Conservation laws from variational structure</h2>
+<section id="d.-conservation-laws-from-variational-structure" class="slide level2">
+<h2>1d. Conservation laws from variational structure</h2>
 <p>From Euler-Lagrange, one obtains the identity</p>
 <p><span class="math display">\[
-\frac{\mathrm d}{\mathrm dt}\left(\dot{\mathbf x}\,\frac{\partial L}{\partial \dot{\mathbf x}} - L\right)
+\frac{\mathrm d}{\mathrm dt}\left(\dot{\mathbf x} \cdot \frac{\partial L}{\partial \dot{\mathbf x}} - L\right)
 = -\frac{\partial L}{\partial t}
 \]</span></p>
 <p>Therefore, if there is no explicit time dependence,</p>
 <p><span class="math display">\[
 \frac{\partial L}{\partial t}=0
 \qquad\Longrightarrow\qquad
-E = \dot{\mathbf x}\,\frac{\partial L}{\partial \dot{\mathbf x}} - L,
+E = \dot{\mathbf x} \cdot \frac{\partial L}{\partial \dot{\mathbf x}} - L,
 \quad \frac{\mathrm dE}{\mathrm dt}=0
 \]</span></p>
 <div class="fragment">
@@ -414,9 +436,9 @@ p = \frac{\partial L}{\partial \dot{\mathbf x}},
 \]</span></p>
 </div>
 </section>
-<section id="d.-example-particle-in-a-central-potential" class="slide level2">
-<h2>1d. Example: particle in a central potential</h2>
-<p>Consider a particle of mass <span class="math inline">\(m\)</span> in a central potential <span class="math inline">\(V(r)\,\,\)</span> in polar coordinates <span class="math inline">\((r,\varphi)\,\,\,\)</span>.</p>
+<section id="e.-example-particle-in-a-central-potential" class="slide level2">
+<h2>1e. Example: particle in a central potential</h2>
+<p>Consider a particle of mass <span class="math inline">\(m\,\)</span> in a central potential <span class="math inline">\(V(r)\,\,\)</span> in polar coordinates <span class="math inline">\((r,\varphi)\,\,\,\)</span>.</p>
 <p><span class="math display">\[
 |\dot{\mathbf x}|^2 = \dot r^2 + r^2\dot\varphi^2
 \qquad\Longrightarrow\qquad
@@ -490,7 +512,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 - \nabla\cdot\frac{\partial \mathcal L}{\partial (\nabla u)}
 \right)\eta\,\mathrm d\mathbf x\,\mathrm dt.
 \]</span></p>
-<p>Thus stationarity for all admissible <span class="math inline">\(\eta\)</span> yields the field Euler-Lagrange equation</p>
+<p>Thus stationarity for all admissible <span class="math inline">\(\eta\,\)</span> yields the field Euler-Lagrange equation</p>
 <p><span class="math display">\[
 \frac{\partial \mathcal L}{\partial u}
 - \partial_t\frac{\partial \mathcal L}{\partial (\partial_t u)}
@@ -542,79 +564,210 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 <p>Let</p>
 <p><span class="math display">\[\mathbf u(t,\mathbf x)\]</span></p>
 <p>be the <em>fluid velocity field</em> at any given time <span class="math inline">\(t\)</span> at position <span class="math inline">\(\mathbf x\)</span>.</p>
-<div class="fragment">
 <div style="margin-top: 1em;">
 
 </div>
 <p><span style="color: #1f9d8a;"><strong>Lagrangian description (particle-following):</strong></span></p>
 <p>Track each fluid parcel labeled by its initial position <span class="math inline">\(\mathbf x_0\)</span>.</p>
 <p><span class="math display">\[
-\frac{\mathrm d}{\mathrm dt}\Phi(t,\mathbf x_0)
-= \mathbf u\big(t,\Phi(t,\mathbf x_0)\big),
+\begin{aligned}
+\frac{\mathrm d}{\mathrm dt}\Phi_t(\mathbf x_0)
+&amp;= \mathbf u\big(t,\Phi_t(\mathbf x_0)\big),
 \qquad
-\Phi(0,\mathbf x_0)=\mathbf x_0.
+\Phi_0(\mathbf x_0)=\mathbf x_0.
+\\[1mm]
+\frac{\mathrm d^2}{\mathrm dt^2}\Phi_t(\mathbf x_0) &amp;= \frac 1m \mathbf F\big(t,\Phi_t(\mathbf x_0)\big)
+\end{aligned}
 \]</span></p>
 <ul>
-<li><p><span class="math inline">\(\Phi(t,\mathbf x_0)\quad\)</span> is the position at time <span class="math inline">\(t\)</span> of the fluid parcel that started at <span class="math inline">\(\mathbf x_0\)</span> at time <span class="math inline">\(0\)</span>.</p></li>
-<li><p>the function <span class="math inline">\(\Phi:[t_0,t_1]\times\Omega \to \Omega\qquad\)</span> is called the <em>flow map</em> and encodes the full fluid motion.</p></li>
+<li><p><span class="math inline">\(\Phi_t(\mathbf x_0)\,\,\,\)</span> is the position at time <span class="math inline">\(t\)</span> of the fluid parcel that started at <span class="math inline">\(\mathbf x_0\)</span> at time <span class="math inline">\(0\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathbf F(t, \mathbf x)\,\,\,\)</span> is the force acting on the fluid parcel at position <span class="math inline">\(\mathbf x\)</span> at time <span class="math inline">\(t\)</span>.</p></li>
+<li><p>for each <span class="math inline">\(t \in [t_0,t_1]\quad\)</span>, the mapping <span class="math inline">\(\Phi_t:\Omega \to \Omega\quad\)</span> is a <em>diffeomorphism</em>. <span class="math inline">\(\Phi_t\,\)</span> is called the <em>flow map</em> and encodes the full fluid motion.</p></li>
 </ul>
-</div>
-<div class="fragment">
 <p><span style="color: #1f9d8a;"><strong>Eulerian description (field-at-fixed-point):</strong></span></p>
-<p>Observe fields at fixed spatial location <span class="math inline">\(\mathbf x\)</span>:</p>
+<p>Observe the mass density <span class="math inline">\(\rho(t,\mathbf x)\,\,\,\)</span> at fixed spatial location <span class="math inline">\(\mathbf x\,\)</span>. For compressible flow, this yields</p>
 <p><span class="math display">\[
-\rho = \rho(t,\mathbf x),
-\qquad
-\mathbf u = \mathbf u(t,\mathbf x).
+\begin{aligned}
+\partial_t\rho + \nabla\cdot(\rho\mathbf u) &amp;= 0,
+\\[2mm]
+\partial_t\mathbf u + (\mathbf u\cdot\nabla)\mathbf u &amp;= \frac{1}{\rho} \mathbf F(t,\mathbf x).
+\end{aligned}
 \]</span></p>
-<p>For compressible flow, this yields</p>
-<p><span class="math display">\[
-\partial_t\rho + \nabla\cdot(\rho\mathbf u)=0,
-\]</span></p>
-<p><span class="math display">\[
-\partial_t\mathbf u + (\mathbf u\cdot\nabla)\mathbf u
-= -\frac{1}{\rho}\nabla p.
-\]</span></p>
-</div>
-<div class="fragment">
+<ul>
+<li>solve a system of PDEs (!) for <span class="math inline">\(\rho(t,\mathbf x)\,\,\,\)</span> and <span class="math inline">\(\mathbf u(t,\mathbf x)\)</span></li>
+</ul>
 <p><strong>Bridge between both views:</strong></p>
 <p>The Lagrangian parcel acceleration equals the Eulerian material derivative:</p>
 <p><span class="math display">\[
 \frac{\mathrm d}{\mathrm dt}\mathbf u\big(t,\Phi(t,\mathbf x_0)\big)
 = \big(\partial_t + \mathbf u\cdot\nabla\big)\mathbf u.
 \]</span></p>
-</div>
 </section>
 <section id="a.-lagrangian-vs.-eulerian-sketches" class="slide level2 scrollable">
 <h2>3a. Lagrangian vs.&nbsp;Eulerian sketches</h2>
-<div id="ffcb7f48" class="cell" data-execution_count="2">
+<div id="0f60187b" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/cell-3-output-1.png" class="quarto-figure quarto-figure-center" width="950" height="414"></p>
+<p><img data-src="index_files/figure-revealjs/cell-3-output-1.png" class="quarto-figure quarto-figure-center" width="948" height="392"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="fragment">
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><span style="color: #1f9d8a;"><strong>Lagrangian viewpoint</strong></span></p>
 <ul>
 <li>Move with the flow (follow parcels)</li>
-<li>Unknown: trajectory / flow map <span class="math inline">\(\Phi(t,\mathbf x_0)\)</span></li>
+<li>Unknown: trajectory / flow map <span class="math inline">\(\Phi_t(\mathbf x_0)\)</span></li>
 <li>Label parcels by initial position <span class="math inline">\(\mathbf x_0\)</span></li>
 <li>Typical question: where does this parcel go?</li>
+<li>Solve ODEs for <span class="math inline">\(\Phi_t(\mathbf x_0)\,\,\,\)</span> for different <span class="math inline">\(\mathbf x_0\)</span></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><span style="color: #1f9d8a;"><strong>Eulerian viewpoint</strong></span></p>
 <ul>
-<li>Stay at a fixed point of observation</li>
+<li>Stay at a fixed location <span class="math inline">\(\mathbf{x}_*\)</span></li>
 <li>Unknowns: fields <span class="math inline">\(\rho(t,\mathbf x),\,\mathbf u(t,\mathbf x)\)</span></li>
 <li>Label points by spatial location <span class="math inline">\(\mathbf x\)</span></li>
 <li>Typical question: what passes through this location?</li>
+<li>Solve PDEs for <span class="math inline">\(\rho(t,\mathbf x),\,\mathbf u(t,\mathbf x)\)</span></li>
 </ul>
 </div></div>
+</section>
+<section id="euler-poincaré-reduction" class="slide level2 scrollable">
+<h2>4. Euler-Poincaré reduction</h2>
+<p>Suppose we have a Lagrangian description of fluid motion in terms of the flow map <span class="math inline">\(\Phi_t(\mathbf x_0)\,\,\,\)</span> for all <span class="math inline">\(\mathbf x_0 \in \Omega \subset \mathbb R^3:\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\mathrm d}{\mathrm dt}\Phi_t(\mathbf x_0)
+&amp;= \mathbf u\big(t,\Phi_t(\mathbf x_0)\big),
+\qquad
+\Phi_0(\mathbf x_0)=\mathbf x_0.
+\\[1mm]
+\frac{\mathrm d^2}{\mathrm dt^2}\Phi_t(\mathbf x_0) &amp;= - \frac 1m \nabla V\big(\Phi_t(\mathbf x_0)\big)
+\end{aligned}
+\]</span></p>
+<p>From what we have learned so far it is easy to write down a variational principle for this Lagrangian description for a fixed initial position <span class="math inline">\(\mathbf x_0:\)</span></p>
+<p><span class="math display">\[
+\mathcal A_\textrm{Lagrange}(\Phi_t, \dot{\Phi}_t) = \int_0^T \left( m\frac{|\dot{\Phi}_t(\mathbf x_0)|^2}{2} - V\big(\Phi_t(\mathbf x_0)\big) \right) \,\mathrm dt.
+\]</span></p>
+<p><strong>Can we write down an equivalent variational principle for the Eulerian description?</strong></p>
+</section>
+<section id="a.-local-conservation-of-mass" class="slide level2 scrollable">
+<h2>4a. Local conservation of mass</h2>
+<p>A <em>volume form</em> assigns to any open subset <span class="math inline">\(\Omega \subset \mathbb R^3\quad\)</span> a real number:</p>
+<p><span class="math display">\[
+\rho^\textrm{vol}:\quad \Omega \subset_\textrm{open} \mathbb R^3 \mapsto \int_\Omega \rho^\textrm{vol}(\mathbf x)\,\textrm d \mathbf x \in \mathbb R.
+\]</span></p>
+<div style="width: 80%; margin: 0 auto; text-align: left; border: 2px solid #2c3e50; padding: 1.0em; border-radius: 8px; background-color: rgba(52, 152, 219, 0.05);">
+<p>A <em>density</em> (transported by the flow) is a time-dependent volume form that is invariant under the flow <span class="math inline">\(\Phi_t:\)</span></p>
+<p><span class="math display">\[
+\int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
+\]</span></p>
+</div>
+<div id="fb4fe67f" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-4-output-1.png" class="quarto-figure quarto-figure-center" width="888" height="355"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>The followng three statements are a consequence of the invariance of the volume form under the flow:</p>
+<ol type="1">
+<li>A density satisfies the <em>continuity equation:</em></li>
+</ol>
+<p><span class="math display">\[
+\frac{\partial \rho^\textrm{vol}}{\partial t} + \nabla \cdot (\rho^\textrm{vol} \mathbf u) = 0.
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf u(t, \mathbf x):= \dot{\Phi}_t \circ \Phi_t^{-1}(\mathbf x)\qquad\,\)</span> is the <strong>Eulerian velocity field</strong>, which follows from <span class="math inline">\(\mathbf x = \Phi_t(\mathbf x_0).\)</span></p>
+<ol start="2" type="1">
+<li>The following is constant along the flow:</li>
+</ol>
+<p><span class="math display">\[
+\frac{\mathrm d}{\mathrm dt} \Big[ \rho^\textrm{vol}(\Phi_t) \,\big| \textrm{det} D\Phi_t\big| \Big] = 0.
+\]</span></p>
+<ol start="3" type="1">
+<li>The variation of a density is given by</li>
+</ol>
+<p><span class="math display">\[
+\delta \rho^\textrm{vol} = -\nabla \cdot (\rho^\textrm{vol} \boldsymbol\eta).
+\]</span></p>
+<p>for arbitrary vector field <span class="math inline">\(\boldsymbol\eta(t, \mathbf x):= \delta \Phi_t \circ \Phi_t^{-1}(\mathbf x).\)</span></p>
+</div>
+</section>
+<section id="b.-from-lagrangian-to-eulerian-coordinates" class="slide level2 scrollable">
+<h2>4b. From Lagrangian to Eulerian coordinates</h2>
+<p>Assume an initial density <span class="math inline">\(\rho^\textrm{vol}(0, \mathbf x_0)\quad\)</span> and consider the modified Lagrange action</p>
+<p><span class="math display">\[
+\mathcal A_\textrm{Lagrange}(\Phi_t, \dot{\Phi}_t) = \int_0^T \int_{\Omega_0} \left( m\frac{|\dot{\Phi}_t(\mathbf x_0)|^2}{2} - V\big(\Phi_t(\mathbf x_0)\big)  \right) \rho^\textrm{vol}(0, \mathbf x_0) \, \textrm d \mathbf x_0\,\mathrm dt.
+\]</span></p>
+<div class="fragment">
+<p>Using the change of variables <span class="math inline">\(\mathbf x = \Phi_t(\mathbf x_0)\quad\)</span>, as well as the dynamics given by <br> <span class="math inline">\(\dot{\Phi}_t(\mathbf x_0) = \mathbf u(t, \Phi_t(\mathbf x_0))\qquad\,\,\,\)</span>, we get</p>
+<p><span class="math display">\[
+\mathcal A_\textrm{Euler}(\mathbf u, \ldots)
+= \int_0^T \int_{\Omega} \left( m\frac{|\mathbf u(t, \mathbf x)|^2}{2} - V(\mathbf x) \right) \frac{\rho^\textrm{vol}(0, \Phi_t^{-1}(\mathbf x))}{ \big| \textrm{det} D\Phi_t(\Phi_t^{-1}(\mathbf x)) \big|} \, \textrm d \mathbf x\,\mathrm dt
+\]</span></p>
+</div>
+<div class="fragment">
+<p>We can now use 2. from the previous slide, namely</p>
+<p><span class="math display">\[
+\rho^\textrm{vol}(\Phi_t(\mathbf x_0)) \,\big| \textrm{det} D\Phi_t(\mathbf x_0) \big|  = \rho^{\textrm{vol}}(0, \mathbf x_0),
+\]</span></p>
+<p>to obtain</p>
+<p><span class="math display">\[
+\mathcal A_\textrm{Euler}(\mathbf u, \rho^\textrm{vol})
+= \int_0^T \int_{\Omega} \left( m\frac{|\mathbf u(t, \mathbf x)|^2}{2} - V(\mathbf x) \right) \rho^\textrm{vol}(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
+\]</span></p>
+<p><strong>The unknown flow map <span class="math inline">\(\Phi_t\,\)</span> has thus been replaced by the two unknown fields <span class="math inline">\(\mathbf u(t, \mathbf x)\,\,\,\)</span> and <span class="math inline">\(\rho^\textrm{vol}(t, \mathbf x)\quad\)</span>. These fields have to be determined by variation of the new action.</strong></p>
+</div>
+<div class="fragment">
+<p>We already know the variations of the density <span class="math inline">\(\rho^\textrm{vol}\,\,\)</span> from 3. in the previous slide:</p>
+<p><span class="math display">\[
+\delta \rho^\textrm{vol} = -\nabla \cdot (\rho^\textrm{vol} \boldsymbol\eta).
+\]</span></p>
+<p>for arbitrary vector field <span class="math inline">\(\boldsymbol\eta(t, \mathbf x):= \delta \Phi_t \circ \Phi_t^{-1}(\mathbf x).\)</span></p>
+</div>
+<div class="fragment">
+<p>We can compute the variations of the velocity field from</p>
+<p><span class="math display">\[
+\mathbf u(t, \mathbf x) := \dot{\Phi}_t \circ \Phi_t^{-1}(\mathbf x)
+\]</span></p>
+<p>to obtain (after some algebra)</p>
+<p><span class="math display">\[
+\delta \mathbf u = \partial_t \boldsymbol\eta + \mathbf u \cdot \nabla \boldsymbol\eta - \boldsymbol\eta \cdot \nabla \mathbf u.
+\]</span></p>
+</div>
+</section>
+<section id="c.-computing-eulerian-constrained-variations" class="slide level2 scrollable">
+<h2>4c. Computing Eulerian (constrained) variations</h2>
+<p>The Euler action:</p>
+<p><span class="math display">\[
+\mathcal A_\textrm{Euler}(\mathbf u, \rho^\textrm{vol})
+= \int_0^T \int_{\Omega} \left( m\frac{|\mathbf u(t, \mathbf x)|^2}{2} - V(\mathbf x) \right) \rho^\textrm{vol}(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
+\]</span></p>
+<div class="fragment">
+<p>The <strong>constrained variations</strong>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta \mathbf u &amp;= \partial_t \boldsymbol\eta + \mathbf u \cdot \nabla \boldsymbol\eta - \boldsymbol\eta \cdot \nabla \mathbf u,
+\\[2mm]
+\delta \rho^\textrm{vol} &amp;= -\nabla \cdot (\rho^\textrm{vol} \boldsymbol\eta).
+\end{aligned}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>The computation:</p>
+<p><span class="math display">\[
+\delta \mathcal A_\textrm{Euler} = \underbrace{\int_0^T \int_{\Omega} m\mathbf u \cdot \delta \mathbf u \, \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt}_{\text{①}} + \underbrace{\int_0^T \int_{\Omega} \left( m\frac{|\mathbf u|^2}{2} - V \right) \delta \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt}_{\text{②}}
+\]</span></p>
+<p>First integral:</p>
+<p><span class="math display">\[
+    \text{①} = \int_0^T \int_{\Omega} m\mathbf u \cdot \left( \partial_t \boldsymbol\eta + \mathbf u \cdot \nabla \boldsymbol\eta - \boldsymbol\eta \cdot \nabla \mathbf u \right) \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt
+\]</span></p>
 
 
 </div>
@@ -623,7 +776,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="dog-cartoon-struphy.jpg" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Struphy at OSSFE 2026 - Munich</p>
+<p>Meshless algorithms in Struphy - SPEGEO Strasbourg 2026</p>
 </div>
 </div></div>
 
