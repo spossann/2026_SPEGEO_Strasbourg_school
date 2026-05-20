@@ -335,7 +335,7 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 \qquad
 \delta \mathbf x(t_0)=\delta \mathbf x(t_1)=\mathbf 0.
 \]</span></p>
-<div id="9069b0fa" class="cell" data-execution_count="1">
+<div id="127f1a83" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -605,7 +605,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 </section>
 <section id="a.-lagrangian-vs.-eulerian-sketches" class="slide level2 scrollable">
 <h2>3a. Lagrangian vs.&nbsp;Eulerian sketches</h2>
-<div id="5a146de8" class="cell" data-execution_count="2">
+<div id="acf51af4" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -666,7 +666,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 </div>
-<div id="251e82b8" class="cell" data-execution_count="3">
+<div id="e40cdc20" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -805,7 +805,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 <p>Divide the initial domain <span class="math inline">\(\Omega_0\,\)</span> into small subregions such that <span class="math inline">\(\bigcup_i \Omega_0^i = \Omega_0:\)</span></p>
-<div id="8beba376" class="cell" data-execution_count="4">
+<div id="672d0dcc" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -957,7 +957,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <tr class="odd">
 <td>Comments</td>
 <td>Needs numerical quadrature over the initial cells.</td>
-<td>Lots of noise, but provable convergence of integrals <span class="math inline">\(1/\sim\sqrt N\)</span>.</td>
+<td>Lots of noise, but provable convergence of integrals <span class="math inline">\(\sim 1/\sqrt N\)</span>.</td>
 </tr>
 </tbody>
 </table>
@@ -1015,11 +1015,11 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <p><span class="math display">\[
 \rho_{h,N}(t, \mathbf x) := (W_h * \rho_N)(t, \mathbf x) = \int_\Omega W_h(\mathbf x - \mathbf y) \rho_N(t, \mathbf y)\,\textrm d \mathbf y = \sum_{i=1}^N w_i\, W_h(\mathbf x - \mathbf x^i(t)).
 \]</span></p>
-<p>At a chosen evaluation point <span class="math inline">\(\mathbf x^*\quad\)</span>, the sum only includes contributions from particles within the <span class="math inline">\(h\,\)</span>-neighborhood of <span class="math inline">\(\mathbf x^*,\)</span></p>
+<p>At a chosen evaluation point <span class="math inline">\(\mathbf x^*\,\,\)</span>, the sum only includes contributions from particles within the <span class="math inline">\(h\,\)</span>-neighborhood of <span class="math inline">\(\mathbf x^*,\)</span></p>
 <p><span class="math display">\[
 \rho_{h,N}(t, \mathbf x^*) = \sum_{i: \|\mathbf x^* - \mathbf x^i(t)\| &lt; h} w_i\, W_h(\mathbf x^* - \mathbf x^i(t)).
 \]</span></p>
-<div id="2bbed80c" class="cell" data-execution_count="5">
+<div id="5b68655f" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1033,11 +1033,11 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <li><p><strong>Solution: assign particles to boxes</strong>, require box-size <span class="math inline">\(\geq h\,\,\,\)</span>, then:</p>
 <ol type="1">
 <li>find box of <span class="math inline">\(\mathbf x^*\)</span></li>
-<li>query particles in the same box and the neighboring boxes</li>
-<li>compute the sum over these particles and ignore the rest</li>
+<li>query particles in the same box and the neighboring boxes only</li>
+<li>compute the sum over the particles in these boxes and ignore the rest</li>
 </ol></li>
 </ul>
-<div id="4f488ba4" class="cell" data-execution_count="6">
+<div id="4af2ca5a" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>

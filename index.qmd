@@ -1296,7 +1296,7 @@ The same discrete ansatz is obtained from two different constructions of the ini
 |---|---|---|
 | Drawing the markers | Partition $\Omega_0$ into grid cells $\Omega_0^i$ and place one marker at the cell center $\mathbf x_0^i \in \Omega_0^i\quad$. The initial markers are therefore distributed regularly. | Draw the initial markers randomly and independently, $\mathbf x_0^i \sim s^\textrm{vol}(0, \mathbf x_0)\quad\,\,$. The initial markers therefore follow the sampling density $s^\textrm{vol}$. |
 | Weights | $w_i := \int_{\Omega_0^i} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d\mathbf x_0$. | $w_i := \dfrac{\rho^\textrm{vol}(0, \mathbf x_0^i)}{s^\textrm{vol}(0, \mathbf x_0^i)}$ |
-| Comments | Needs numerical quadrature over the initial cells. | Lots of noise, but provable convergence of integrals $1/\sim\sqrt N$. |
+| Comments | Needs numerical quadrature over the initial cells. | Lots of noise, but provable convergence of integrals $\sim 1/\sqrt N$. |
 
 
 ## 5e. Example: Pressure-less fluids in a given potential {.scrollable}
@@ -1368,7 +1368,7 @@ $$
 \rho_{h,N}(t, \mathbf x) := (W_h * \rho_N)(t, \mathbf x) = \int_\Omega W_h(\mathbf x - \mathbf y) \rho_N(t, \mathbf y)\,\textrm d \mathbf y = \sum_{i=1}^N w_i\, W_h(\mathbf x - \mathbf x^i(t)).
 $$
 
-At a chosen evaluation point $\mathbf x^*\quad$, the sum only includes contributions from particles within the $h\,$-neighborhood of $\mathbf x^*,$
+At a chosen evaluation point $\mathbf x^*\,\,$, the sum only includes contributions from particles within the $h\,$-neighborhood of $\mathbf x^*,$
 
 $$
 \rho_{h,N}(t, \mathbf x^*) = \sum_{i: \|\mathbf x^* - \mathbf x^i(t)\| < h} w_i\, W_h(\mathbf x^* - \mathbf x^i(t)).
@@ -1451,8 +1451,8 @@ Algorithmically, we need an efficient way to query the neighboring particles for
 - **Solution: assign particles to boxes**, require box-size $\geq h\,\,\,$, then:
 
   1. find box of $\mathbf x^*$
-  2. query particles in the same box and the neighboring boxes
-  3. compute the sum over these particles and ignore the rest
+  2. query particles in the same box and the neighboring boxes only
+  3. compute the sum over the particles in these boxes and ignore the rest
 
 ```{python}
 #| echo: false
