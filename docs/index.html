@@ -335,7 +335,7 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 \qquad
 \delta \mathbf x(t_0)=\delta \mathbf x(t_1)=\mathbf 0.
 \]</span></p>
-<div id="7f449f88" class="cell" data-execution_count="1">
+<div id="9069b0fa" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -605,7 +605,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 </section>
 <section id="a.-lagrangian-vs.-eulerian-sketches" class="slide level2 scrollable">
 <h2>3a. Lagrangian vs.&nbsp;Eulerian sketches</h2>
-<div id="0f60187b" class="cell" data-execution_count="2">
+<div id="5a146de8" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -666,7 +666,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 </div>
-<div id="fb4fe67f" class="cell" data-execution_count="3">
+<div id="251e82b8" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -701,26 +701,26 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 </section>
 <section id="b.-from-lagrangian-to-eulerian-coordinates" class="slide level2 scrollable">
 <h2>4b. From Lagrangian to Eulerian coordinates</h2>
-<p>Assume an initial density <span class="math inline">\(\rho^\textrm{vol}(0, \mathbf x_0)\quad\)</span> and consider the modified Lagrange action</p>
+<p>Assume an initial mass density <span class="math inline">\(\rho^\textrm{vol}(0, \mathbf x_0)\quad\)</span> and consider the modified Lagrange action</p>
 <p><span class="math display">\[
-\mathcal A_\textrm{Lagrange}(\Phi_t, \dot{\Phi}_t) = \int_0^T \int_{\Omega_0} \left( m\frac{|\dot{\Phi}_t(\mathbf x_0)|^2}{2} - V\big(\Phi_t(\mathbf x_0)\big)  \right) \rho^\textrm{vol}(0, \mathbf x_0) \, \textrm d \mathbf x_0\,\mathrm dt.
+\mathcal A_\textrm{Lagrange}(\Phi_t, \dot{\Phi}_t) = \int_0^T \int_{\Omega_0} \left( \frac{|\dot{\Phi}_t(\mathbf x_0)|^2}{2} - \frac 1m V\big(\Phi_t(\mathbf x_0)\big)  \right) \rho^\textrm{vol}(0, \mathbf x_0) \, \textrm d \mathbf x_0\,\mathrm dt.
 \]</span></p>
 <div class="fragment">
 <p>Using the change of variables <span class="math inline">\(\mathbf x = \Phi_t(\mathbf x_0)\quad\)</span>, as well as the dynamics given by <br> <span class="math inline">\(\dot{\Phi}_t(\mathbf x_0) = \mathbf u(t, \Phi_t(\mathbf x_0))\qquad\,\,\,\)</span>, we get</p>
 <p><span class="math display">\[
 \mathcal A_\textrm{Euler}(\mathbf u, \ldots)
-= \int_0^T \int_{\Omega} \left( m\frac{|\mathbf u(t, \mathbf x)|^2}{2} - V(\mathbf x) \right) \frac{\rho^\textrm{vol}(0, \Phi_t^{-1}(\mathbf x))}{ \big| \textrm{det} D\Phi_t(\Phi_t^{-1}(\mathbf x)) \big|} \, \textrm d \mathbf x\,\mathrm dt
+= \int_0^T \int_{\Omega} \left( \frac{|\mathbf u(t, \mathbf x)|^2}{2} - \frac 1m V(\mathbf x) \right) \frac{\rho^\textrm{vol}(0, \Phi_t^{-1}(\mathbf x))}{ \big| \textrm{det} D\Phi_t(\Phi_t^{-1}(\mathbf x)) \big|} \, \textrm d \mathbf x\,\mathrm dt
 \]</span></p>
 </div>
 <div class="fragment">
 <p>We can now use 2. from the previous slide, namely</p>
 <p><span class="math display">\[
-\rho^\textrm{vol}(\Phi_t(\mathbf x_0)) \,\big| \textrm{det} D\Phi_t(\mathbf x_0) \big|  = \rho^{\textrm{vol}}(0, \mathbf x_0),
+\rho^\textrm{vol}(t, \Phi_t(\mathbf x_0)) = \frac{\rho^{\textrm{vol}}(0, \mathbf x_0)}{\big| \textrm{det} D\Phi_t(\mathbf x_0) \big|},
 \]</span></p>
 <p>to obtain</p>
 <p><span class="math display">\[
 \mathcal A_\textrm{Euler}(\mathbf u, \rho^\textrm{vol})
-= \int_0^T \int_{\Omega} \left( m\frac{|\mathbf u(t, \mathbf x)|^2}{2} - V(\mathbf x) \right) \rho^\textrm{vol}(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
+= \int_0^T \int_{\Omega} \left( \frac{|\mathbf u(t, \mathbf x)|^2}{2} - \frac 1m V(\mathbf x) \right) \rho^\textrm{vol}(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
 \]</span></p>
 <p><strong>The unknown flow map <span class="math inline">\(\Phi_t\,\)</span> has thus been replaced by the two unknown fields <span class="math inline">\(\mathbf u(t, \mathbf x)\,\,\,\)</span> and <span class="math inline">\(\rho^\textrm{vol}(t, \mathbf x)\quad\)</span>. These fields have to be determined by variation of the new action.</strong></p>
 </div>
@@ -747,7 +747,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 <p>The Euler action:</p>
 <p><span class="math display">\[
 \mathcal A_\textrm{Euler}(\mathbf u, \rho^\textrm{vol})
-= \int_0^T \int_{\Omega} \left( m\frac{|\mathbf u(t, \mathbf x)|^2}{2} - V(\mathbf x) \right) \rho^\textrm{vol}(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
+= \int_0^T \int_{\Omega} \left( \frac{|\mathbf u(t, \mathbf x)|^2}{2} - \frac 1m V(\mathbf x) \right) \rho^\textrm{vol}(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
 \]</span></p>
 <div class="fragment">
 <p>The <strong>constrained variations</strong>:</p>
@@ -762,16 +762,302 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 <div class="fragment">
 <p>The computation:</p>
 <p><span class="math display">\[
-\delta \mathcal A_\textrm{Euler} = \underbrace{\int_0^T \int_{\Omega} m\mathbf u \cdot \delta \mathbf u \, \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt}_{\text{①}} + \underbrace{\int_0^T \int_{\Omega} \left( m\frac{|\mathbf u|^2}{2} - V \right) \delta \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt}_{\text{②}}
+\delta \mathcal A_\textrm{Euler} = \underbrace{\int_0^T \int_{\Omega} \mathbf u \cdot \delta \mathbf u \, \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt}_{\text{①}} + \underbrace{\int_0^T \int_{\Omega} \left( \frac{|\mathbf u|^2}{2} - \frac 1m V \right) \delta \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt}_{\text{②}}
 \]</span></p>
 <p>First integral:</p>
 <p><span class="math display">\[
-    \text{①} = \int_0^T \int_{\Omega} m\mathbf u \cdot \left( \partial_t \boldsymbol\eta + \mathbf u \cdot \nabla \boldsymbol\eta - \boldsymbol\eta \cdot \nabla \mathbf u \right) \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt
+\begin{aligned}
+    \text{①} &amp;= \int_0^T \int_{\Omega} \mathbf u \cdot \left( \partial_t \boldsymbol\eta + \mathbf u \cdot \nabla \boldsymbol\eta - \boldsymbol\eta \cdot \nabla \mathbf u \right) \rho^\textrm{vol} \, \textrm d \mathbf x\,\mathrm dt
+  \\[2mm]
+  &amp;= \int_0^T \int_{\Omega} \left[ - \frac{\partial}{\partial t}(\rho^\textrm{vol} \mathbf u) - \nabla \cdot (\rho^\textrm{vol} \mathbf u \mathbf u^\top) - \rho^\textrm{vol} \nabla \frac{|\mathbf u|^2}{2} \right] \cdot \boldsymbol \eta \, \textrm d \mathbf x\,\mathrm dt
+\end{aligned}
 \]</span></p>
-
-
+<p>Second integral:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  \text{②} &amp;= - \int_0^T \int_{\Omega} \left( \frac{|\mathbf u|^2}{2} - \frac 1m V \right) \nabla \cdot (\rho^\textrm{vol} \boldsymbol\eta) \, \textrm d \mathbf x\,\mathrm dt
+  \\[2mm]
+  &amp;= \int_0^T \int_{\Omega} \left[ \rho^\textrm{vol} \nabla \left( \frac{|\mathbf u|^2}{2} - \frac 1m V \right) \right] \cdot \boldsymbol\eta \, \textrm d \mathbf x\,\mathrm dt
+\end{aligned}
+\]</span></p>
+<p>Hamilton’s principle <span class="math inline">\(\text{①} + \text{②} = 0\quad\)</span> for arbitrary <span class="math inline">\(\boldsymbol\eta\,\)</span> yields <em>Euler’s equation</em> for the fluid velocity field:</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial t}(\rho^\textrm{vol} \mathbf u) + \nabla \cdot (\rho^\textrm{vol} \mathbf u \mathbf u^\top) = - \frac{\rho^\textrm{vol}}{m} \nabla V.
+\]</span></p>
+<p>The mass conservation law is given by our assumption that <span class="math inline">\(\rho^\textrm{vol}\,\)</span> is a density transported by the flow:</p>
+<p><span class="math display">\[
+\frac{\partial \rho^\textrm{vol}}{\partial t} + \nabla \cdot (\rho^\textrm{vol} \mathbf u) = 0.
+\]</span></p>
 </div>
 </section></section>
+<section>
+<section id="part-ii-discretization---particle-methods-for-fluid-lagrangians" class="title-slide slide level1 center">
+<h1>Part II: Discretization - Particle methods for fluid Lagrangians</h1>
+
+</section>
+<section id="two-approaches" class="slide level2 scrollable">
+<h2>5. Two approaches</h2>
+</section>
+<section id="a.-approximating-a-density-by-particles" class="slide level2 scrollable">
+<h2>5a. Approximating a density by particles</h2>
+<p>A density <span class="math inline">\(\rho^\textrm{vol}\,\,\,\)</span> satisfies</p>
+<p><span class="math display">\[
+\int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
+\]</span></p>
+<p>Divide the initial domain <span class="math inline">\(\Omega_0\,\)</span> into small subregions such that <span class="math inline">\(\bigcup_i \Omega_0^i = \Omega_0:\)</span></p>
+<div id="8beba376" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-5-output-1.png" class="quarto-figure quarto-figure-center" width="987" height="285"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Define the <strong>weights</strong> <span class="math inline">\(w_i \in \mathbb R\quad\)</span> for each subregion <span class="math inline">\(\Omega_0^i\,\)</span> by</p>
+<p><span class="math display">\[
+w_i := \int_{\Omega_0^i} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0
+\]</span></p>
+<p>such that</p>
+<p><span class="math display">\[
+\sum_i w_i = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0
+\]</span></p>
+<p>Now let <span class="math inline">\(\mathbf x_0^i \in \Omega_0^i\quad\)</span>, then</p>
+<p><span class="math display">\[
+\mathbf x^i(t) = \Phi_t(\mathbf x_0^i) \quad \in \Phi_t(\Omega_0^i) \qquad \forall t \in [0, T].
+\]</span></p>
+<p><strong>Particle approximation:</strong> We can approximate the density <span class="math inline">\(\rho^\textrm{vol}(t, \mathbf x)\quad\)</span> at time <span class="math inline">\(t\)</span> by a <strong>sum of weighted delta distributions</strong> centered at the particle locations <span class="math inline">\(\mathbf x^i(t):\)</span></p>
+<p><span class="math display">\[
+\rho^\textrm{vol}(t, \mathbf x) \approx \rho_N(t, \mathbf x) := \sum_{i=1}^N w_i\, \delta(\mathbf x - \mathbf x^i(t)).
+\]</span></p>
+<p>The discrete <span class="math inline">\(\rho_N\,\)</span> is still a density (!) since</p>
+<p><span class="math display">\[
+\int_{\Phi_t(\Omega_0)} \rho_N(t, \mathbf x)\,\textrm d \mathbf x = \sum_{i=1}^N w_i = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0.
+\]</span></p>
+<p>The particles are advected by the flow,</p>
+<p><span class="math display">\[
+\mathbf x^i(t) = \Phi_t(\mathbf x_0^i),\quad \Longleftrightarrow \quad \dot{\mathbf x}^i(t) = \mathbf u(t, \mathbf x^i(t))\quad \mathbf x^i(0) = \mathbf x_0^i.  
+\]</span></p>
+<p><strong>The weights <span class="math inline">\(w_i\,\)</span> are constant in time, since they are defined by the initial density <span class="math inline">\(\rho^\textrm{vol}(0, \mathbf x_0)\quad\)</span> and the partition of the initial domain <span class="math inline">\(\Omega_0\,\)</span> into subregions <span class="math inline">\(\Omega_0^i.\)</span></strong></p>
+</section>
+<section id="b.-approximating-integrals-by-particles-monte-carlo" class="slide level2 scrollable">
+<h2>5b. Approximating integrals by particles (Monte-Carlo)</h2>
+<p>Suppose we aim to compute the integral</p>
+<p><span class="math display">\[
+I = \int_\Omega A(\mathbf x)\,\rho^\textrm{vol}(\mathbf x)\,\textrm d \mathbf x.
+\]</span></p>
+<p>for some function (or <span class="math inline">\(0\,\)</span>-form) <span class="math inline">\(A(\mathbf x)\,\,\)</span>. Further, suppose <span class="math inline">\(s^\textrm{vol}\,\)</span> denotes a probability density supported on <span class="math inline">\(\Omega\,\)</span> such that</p>
+<p><span class="math display">\[
+s^\textrm{vol}(\mathbf x) &gt; 0\quad\forall\mathbf x \in \Omega,\qquad \int_\Omega s^\textrm{vol}(\mathbf x)\,\textrm d \mathbf x = 1.
+\]</span></p>
+<p>Then we can rewrite the integral <span class="math inline">\(I\,\)</span> as an expectation value <span class="math inline">\(\mathbb E\,\)</span> with respect to <span class="math inline">\(s^\textrm{vol}\,:\)</span></p>
+<p><span class="math display">\[
+I = \int_\Omega A(\mathbf x)\frac{\rho^\textrm{vol}(\mathbf x)}{s^\textrm{vol}(\mathbf x)} s^\textrm{vol}(\mathbf x)\,\textrm d \mathbf x = \mathbb E\left[ A\frac{\rho^\textrm{vol}}{s^\textrm{vol}} \right]_{s^\textrm{vol}}
+\]</span></p>
+<p><strong>Monte Carlo approximation.</strong> Draw <span class="math inline">\(N\,\)</span> independent samples <span class="math inline">\(\mathbf x_i \sim s^\textrm{vol}\quad\)</span> and approximate</p>
+<p><span class="math display">\[
+I \approx I_N := \frac{1}{N}\sum_{i=1}^N A(\mathbf x_i)\frac{\rho^\textrm{vol}(\mathbf x_i)}{s^\textrm{vol}(\mathbf x_i)} = \frac 1N \sum_{i=1}^N w_i A(\mathbf x_i).
+\]</span></p>
+<p>with weights</p>
+<p><span class="math display">\[
+w_i = \frac{\rho^\textrm{vol}(\mathbf x_i)}{s^\textrm{vol}(\mathbf x_i)}.
+\]</span></p>
+<p>The sample mean <span class="math inline">\(I_N\,\)</span> can be viewed as a random variable itself, when viewing the samples <span class="math inline">\(\mathbf x_i\,\)</span> as random variables distributed according to <span class="math inline">\(s^\textrm{vol}\,\)</span>. It is an <em>unbiased</em> estimator of the true mean value (which is our integral):</p>
+<p><span class="math display">\[
+\mathbb E[I_N] = \mathbb E\left[  \frac 1N \sum_{i=1}^N w_i A(\mathbf x_i) \right] =   \frac 1N \sum_{i=1}^N \mathbb  E\left[w_i A(\mathbf x_i) \right] = \frac{NI}{N}  = I.
+\]</span></p>
+<p>The variance of <span class="math inline">\(I_N\,\)</span> is given by</p>
+<p><span class="math display">\[
+\mathbb V[I_N] = \mathbb E\!\left[(I_N - \mathbb E[I_N])^2\right] = \mathbb E\!\left[(I_N - I)^2\right]
+\]</span></p>
+<p>and is a good measure for the error. Using Bienaymé’s identity for independent random variables <span class="math inline">\(X_i,\)</span></p>
+<p><span class="math display">\[
+\mathbb V\!\left[\sum_{i=1}^N X_i\right] = \sum_{i=1}^N \mathbb V[X_i],
+\]</span></p>
+<p>we can estimate the rate of convergence of the Monte Carlo approximation:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbb V[I_N] &amp;= \mathbb V\left[ \frac 1N \sum_{i=1}^N w_i A(\mathbf x_i) \right]
+\\[2mm]
+&amp;= \frac{1}{N^2} \mathbb V\left[  \sum_{i=1}^N w_i A(\mathbf x_i) \right]
+\\[2mm]
+&amp;= \frac{1}{N^2} \left[  \sum_{i=1}^N \mathbb V[w_i A(\mathbf x_i)] \right] = \frac{N \sigma^2}{N^2} = \frac{\sigma^2}{N}.
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(\sigma\,\)</span> is the standard deviation of the random variable <span class="math inline">\(w_i A(\mathbf x_i)\quad\)</span>. Hence the root-mean-square error decays as</p>
+<p><span class="math display">\[
+\boxed{\varepsilon_N := \sqrt{\mathbb E\!\left[(I_N - I)^2\right]} = \frac{\sigma}{\sqrt{N}}}
+\]</span></p>
+<p><strong>independent of the spatial dimension <span class="math inline">\(d\)</span></strong> — this is the key advantage of Monte Carlo over quadrature rules, which converge as <span class="math inline">\(N^{-k/d}\,\,\,\)</span> for smooth <span class="math inline">\(k\,\)</span>-th order rules.</p>
+</section>
+<section id="c.-constant-weights" class="slide level2 scrollable">
+<h2>5c. Constant weights</h2>
+<p>In the Monte-Carlo approximation, the weights <span class="math inline">\(w_i\,\)</span> are given by</p>
+<p><span class="math display">\[
+w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x_i(t))},
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf x_i(t) = \Phi_t(\mathbf x_0^i)\qquad\)</span> are the particle locations at time <span class="math inline">\(t\,\)</span>. We can make the following observations:</p>
+<ul>
+<li><span class="math inline">\(\rho^\textrm{vol}\,\,\)</span> is a density and thus</li>
+</ul>
+<p><span class="math display">\[
+\rho^\textrm{vol}(t, \mathbf x_i(t)) = \frac{\rho^\textrm{vol}(0, \mathbf x_0^i)}{\big| \textrm{det} D\Phi_t(\mathbf x_0^i) \big|}.
+\]</span></p>
+<ul>
+<li><span class="math inline">\(s^\textrm{vol}\,\,\)</span> is an arbitrary probability density supported on <span class="math inline">\(\Omega\,\)</span>. We can choose it to be transported by the flow as well, i.e.&nbsp;</li>
+</ul>
+<p><span class="math display">\[s^\textrm{vol}(t, \mathbf x_i) = \frac{s^\textrm{vol}(0, \mathbf x_0^i)}{\big| \textrm{det} D\Phi_t(\mathbf x^i_0) \big|}.
+\]</span></p>
+<p>This implies constancy of the weights:</p>
+<p><span class="math display">\[
+w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x_i(t))} = \frac{\rho^\textrm{vol}(0, \mathbf x_0^i)}{s^\textrm{vol}(0, \mathbf x_0^i)} = w_i(0) = const.
+\]</span></p>
+<p>Hence, in the Monte-Carlo approach, one draws the initial samples <span class="math inline">\(\mathbf x_0^i\,\)</span> from a probability density <span class="math inline">\(s^\textrm{vol}(0, \mathbf x_0)\quad\)</span>. <strong>The information about the initial density <span class="math inline">\(\rho^\textrm{vol}(0, \mathbf x_0)\quad\)</span> is encoded in the constant weights <span class="math inline">\(w_i\,\)</span>.</strong> The particles are then transported by the flow,</p>
+<p><span class="math display">\[
+\mathbf x^i(t) = \Phi_t(\mathbf x_0^i),\quad \Longleftrightarrow \quad \dot{\mathbf x}^i(t) = \mathbf u(t, \mathbf x^i(t))\quad \mathbf x^i(0) = \mathbf x_0^i,  
+\]</span></p>
+<p>and the weights remain constant.</p>
+</section>
+<section id="d.-comparing-the-two-approaches" class="slide level2 scrollable">
+<h2>5d. Comparing the two approaches</h2>
+<p>The particle approximation of the density <span class="math inline">\(\rho^\textrm{vol}(t, \mathbf x)\quad\)</span> is given by</p>
+<p><span class="math display">\[
+\rho_N(t, \mathbf x) = \sum_{i=1}^N w_i\, \delta(\mathbf x - \mathbf x^i(t)).
+\]</span></p>
+<p>where the markers are transported by the flow,</p>
+<p><span class="math display">\[
+\mathbf x^i(t) = \Phi_t(\mathbf x_0^i)
+\]</span></p>
+<p>and the weights remain constant.</p>
+<p>The same discrete ansatz is obtained from two different constructions of the initial markers and weights:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Density approach</th>
+<th>Monte-Carlo approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drawing the markers</td>
+<td>Partition <span class="math inline">\(\Omega_0\)</span> into grid cells <span class="math inline">\(\Omega_0^i\)</span> and place one marker at the cell center <span class="math inline">\(\mathbf x_0^i \in \Omega_0^i\quad\)</span>. The initial markers are therefore distributed regularly.</td>
+<td>Draw the initial markers randomly and independently, <span class="math inline">\(\mathbf x_0^i \sim s^\textrm{vol}(0, \mathbf x_0)\quad\,\,\)</span>. The initial markers therefore follow the sampling density <span class="math inline">\(s^\textrm{vol}\)</span>.</td>
+</tr>
+<tr class="even">
+<td>Weights</td>
+<td><span class="math inline">\(w_i := \int_{\Omega_0^i} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d\mathbf x_0\)</span>.</td>
+<td><span class="math inline">\(w_i := \dfrac{\rho^\textrm{vol}(0, \mathbf x_0^i)}{s^\textrm{vol}(0, \mathbf x_0^i)}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Comments</td>
+<td>Needs numerical quadrature over the initial cells.</td>
+<td>Lots of noise, but provable convergence of integrals <span class="math inline">\(1/\sim\sqrt N\)</span>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="e.-example-pressure-less-fluids-in-a-given-potential" class="slide level2 scrollable">
+<h2>5e. Example: Pressure-less fluids in a given potential</h2>
+<p>We can now discretize the action in Eulerian coordinates,</p>
+<p><span class="math display">\[
+\mathcal A_\textrm{Euler}(\mathbf u, \rho^\textrm{vol})
+= \int_0^T \int_{\Omega} \left( \frac{|\mathbf u(t, \mathbf x)|^2}{2} - \frac 1m V(\mathbf x) \right) \rho^\textrm{vol}(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
+\]</span></p>
+<p>by substituting the particle approximation</p>
+<p><span class="math display">\[
+\rho^\textrm{vol}(t, \mathbf x) \approx \rho_N(t, \mathbf x) = \sum_{i=1}^N w_i\, \delta(\mathbf x - \mathbf x^i(t))
+\]</span></p>
+<p>to obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathcal A(\mathbf u, \mathbf x^1, \ldots, \mathbf x^N)
+&amp;= \int_0^T \int_{\Omega} \left( \frac{|\mathbf u(t, \mathbf x)|^2}{2} - \frac 1m V(\mathbf x) \right) \rho_N(t, \mathbf x) \, \textrm d \mathbf x\,\mathrm dt
+\\[2mm]
+&amp;= \sum_{i=1}^N w_i \int_0^T \left( \frac{|\mathbf u(t, \mathbf x^i(t))|^2}{2} - \frac 1m V(\mathbf x^i(t)) \right) \, \mathrm dt
+\\[2mm]
+&amp;= \sum_{i=1}^N w_i \int_0^T \left( \frac{|\dot{\mathbf x}^i(t)|^2}{2} - \frac 1m V(\mathbf x^i(t)) \right) \, \mathrm dt
+\end{aligned}
+\]</span></p>
+<p>where we used the fact that the particles are advected by the flow, i.e.&nbsp;<span class="math inline">\(\dot{\mathbf x}^i(t) = \mathbf u(t, \mathbf x^i(t)).\)</span></p>
+<p><strong>The action has been reduced to a sum of <span class="math inline">\(N\,\)</span> independent single-particle actions. The dynamics of the system is thus given by <span class="math inline">\(N\,\)</span> independent copies of the single-particle dynamics in the potential <span class="math inline">\(V(\mathbf x)\,\,\,\)</span> i.e.&nbsp;<span class="math inline">\(N\,\)</span> independent solutions of Newton’s equation</strong></p>
+<p><span class="math display">\[
+\ddot{\mathbf x}^i = -\frac{1}{m}\nabla V(\mathbf x^i).
+\]</span></p>
+<p>By contrast, an Eulerian (grid-based) discretization of the same problem would require the discretization of</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \rho^\textrm{vol}}{\partial t} + \nabla \cdot (\rho^\textrm{vol} \mathbf u) &amp;= 0
+\\[2mm]
+\frac{\partial \mathbf u}{\partial t} + \mathbf u \cdot \nabla \mathbf u &amp;= - \frac{1}{m} \nabla V
+\end{aligned}
+\]</span></p>
+<p>which features nonlinear terms and requires the solution of a coupled system of equations at each time step.</p>
+</section>
+<section id="f.-density-estimation-and-smoothing" class="slide level2 scrollable">
+<h2>5f. Density estimation and smoothing</h2>
+<p>At each time <span class="math inline">\(t\,\)</span> we have</p>
+<p><span class="math display">\[
+\rho_N(t, \mathbf x) = \sum_{i=1}^N w_i\, \delta(\mathbf x - \mathbf x^i(t)).
+\]</span></p>
+<p>But the true solution of the PDE is smooth.</p>
+<ul>
+<li>How to evaluate the density?</li>
+<li>How to visualize it?</li>
+<li>How to compute derivatives of the density?</li>
+</ul>
+<p>We can obtain a <strong>smoother approximation by convolution of <span class="math inline">\(\rho_N\,\)</span> with a smoothing kernel <span class="math inline">\(W_h\,\)</span> (e.g.&nbsp;a Gaussian kernel with bandwidth <span class="math inline">\(h\,\)</span>):</strong></p>
+<p><span class="math display">\[
+\rho_{h,N}(t, \mathbf x) := (W_h * \rho_N)(t, \mathbf x) = \int_\Omega W_h(\mathbf x - \mathbf y) \rho_N(t, \mathbf y)\,\textrm d \mathbf y = \sum_{i=1}^N w_i\, W_h(\mathbf x - \mathbf x^i(t)).
+\]</span></p>
+<p>At a chosen evaluation point <span class="math inline">\(\mathbf x^*\quad\)</span>, the sum only includes contributions from particles within the <span class="math inline">\(h\,\)</span>-neighborhood of <span class="math inline">\(\mathbf x^*,\)</span></p>
+<p><span class="math display">\[
+\rho_{h,N}(t, \mathbf x^*) = \sum_{i: \|\mathbf x^* - \mathbf x^i(t)\| &lt; h} w_i\, W_h(\mathbf x^* - \mathbf x^i(t)).
+\]</span></p>
+<div id="2bbed80c" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-6-output-1.png" class="quarto-figure quarto-figure-center" width="609" height="394"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Algorithmically, we need an efficient way to query the neighboring particles for each evaluation point <span class="math inline">\(\mathbf x^*.\)</span></p>
+<ul>
+<li><p><strong>Solution: assign particles to boxes</strong>, require box-size <span class="math inline">\(\geq h\,\,\,\)</span>, then:</p>
+<ol type="1">
+<li>find box of <span class="math inline">\(\mathbf x^*\)</span></li>
+<li>query particles in the same box and the neighboring boxes</li>
+<li>compute the sum over these particles and ignore the rest</li>
+</ol></li>
+</ul>
+<div id="4f488ba4" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-7-output-1.png" class="quarto-figure quarto-figure-center" width="609" height="394"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The question of convergence is important:</p>
+<ul>
+<li><span class="math inline">\(\rho_{h,N} \to \rho^\textrm{vol}\quad\,\)</span> as <span class="math inline">\(N \to \infty\quad\)</span> and <span class="math inline">\(h\,\)</span> fixed</li>
+<li><span class="math inline">\(\rho_{h,N} \to \rho^\textrm{vol}\quad\,\)</span> as <span class="math inline">\(h \to 0\quad\)</span> and <span class="math inline">\(Nh^3\,\,\)</span> fixed</li>
+</ul>
+<p>These are non-trivial questions for later.</p>
+</section></section>
+<section id="practical-part-i-marker-drawing-and-density-evaluation" class="title-slide slide level1 center">
+<h1>Practical Part I: Marker drawing and density evaluation</h1>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="dog-cartoon-struphy.jpg" class="slide-logo"></p>
