@@ -400,7 +400,7 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 \qquad
 \delta \mathbf x(t_0)=\delta \mathbf x(t_1)=\mathbf 0.
 \]</span></p>
-<div id="9f18fce9" class="cell" data-execution_count="1">
+<div id="e099444d" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -651,7 +651,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 </section>
 <section id="a.-lagrangian-vs.-eulerian-sketches" class="slide level2">
 <h2>3a. Lagrangian vs.&nbsp;Eulerian sketches</h2>
-<div id="5d837ef5" class="cell" data-execution_count="2">
+<div id="3dd323d0" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -713,7 +713,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 <div style="margin-top: -1.5em;">
-<div id="2c2f0ec3" class="cell" data-execution_count="3">
+<div id="77846397" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -856,7 +856,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 <p>Divide the initial domain <span class="math inline">\(\Omega_0\,\)</span> into small subregions such that <span class="math inline">\(\bigcup_i \Omega_0^i = \Omega_0:\)</span></p>
-<div id="5b722a39" class="cell" data-execution_count="4">
+<div id="cb3b9bda" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1110,7 +1110,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <p><span class="math display">\[
 \rho_{h,N}(t, \mathbf x^*) = \sum_{i: \|\mathbf x^* - \mathbf x^i(t)\| &lt; h} w_i\, W_h(\mathbf x^* - \mathbf x^i(t)).
 \]</span></p>
-<div id="bb965e51" class="cell" data-execution_count="5">
+<div id="db41c689" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1133,7 +1133,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <li>compute the sum over the particles in these boxes and ignore the rest</li>
 </ol></li>
 </ul>
-<div id="c27ca0b0" class="cell" data-execution_count="6">
+<div id="f6249cfa" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1175,7 +1175,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="target-density" class="slide level2">
 <h2>Target density</h2>
-<div id="551d6e1c" class="cell" data-execution_count="7">
+<div id="5be06316" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1190,7 +1190,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="step-1-domain-background-and-particles" class="slide level2">
 <h2>Step 1: Domain, background, and particles</h2>
-<div id="3168198b" class="cell" data-execution_count="8">
+<div id="5e161818" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1-6|8-9|11-14|16-19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a></a></span>
 <span id="cb1-3"><a></a><span class="co"># from the Strpuhy API</span></span>
@@ -1217,7 +1217,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="step-2-draw-markers-and-initialize-weights" class="slide level2">
 <h2>Step 2: Draw markers and initialize weights</h2>
-<div id="cc519ac7" class="cell" data-execution_count="9">
+<div id="1ca670ff" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" data-code-line-numbers="1-11|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>particles <span class="op">=</span> ParticlesSPH(</span>
 <span id="cb2-2"><a></a>    comm_world<span class="op">=</span><span class="va">None</span>,          <span class="co"># no MPI for this example</span></span>
 <span id="cb2-3"><a></a>    loading_params<span class="op">=</span>loading_params,</span>
@@ -1242,7 +1242,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="step-3-evaluate-the-sph-density" class="slide level2">
 <h2>Step 3: Evaluate the SPH density</h2>
-<div id="038c0d28" class="cell" data-execution_count="10">
+<div id="6f4cefe2" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="2-3|5-6|8-13|15-17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># evaluation grid</span></span>
 <span id="cb3-2"><a></a>eta1 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">100</span>)</span>
 <span id="cb3-3"><a></a>ee1, ee2, ee3 <span class="op">=</span> np.meshgrid(eta1, np.array([<span class="fl">0.0</span>]), np.array([<span class="fl">0.0</span>]), indexing<span class="op">=</span><span class="st">"ij"</span>)</span>
@@ -1267,7 +1267,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="result-exact-vs.-sph" class="slide level2">
 <h2>Result: exact vs.&nbsp;SPH</h2>
-<div id="77933129" class="cell" data-execution_count="11">
+<div id="e969f358" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1284,7 +1284,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="sph-smoothing-kernels" class="slide level2">
 <h2>SPH smoothing kernels</h2>
-<div id="9abecf10" class="cell" data-execution_count="12">
+<div id="aae529b3" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1302,7 +1302,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </section>
 <section id="comparing-sph-kernels" class="slide level2">
 <h2>Comparing SPH kernels</h2>
-<div id="f5083307" class="cell" data-execution_count="13">
+<div id="17469343" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1336,7 +1336,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </section>
 <section id="target-density-1" class="slide level2">
 <h2>Target density</h2>
-<div id="91d027bf" class="cell" data-execution_count="14">
+<div id="e0bae0f5" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1352,7 +1352,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </section>
 <section id="step-1-domain-background-and-particles-1" class="slide level2">
 <h2>Step 1: Domain, background, and particles</h2>
-<div id="221b4e69" class="cell" data-execution_count="15">
+<div id="b1431a98" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="1-2|4-7|9-12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># 2D domain; logical coordinates (eta1, eta2) in [0,1]^2</span></span>
 <span id="cb5-2"><a></a>dom2d <span class="op">=</span> domains.Cuboid(l1<span class="op">=</span><span class="fl">1.0</span>, r1<span class="op">=</span><span class="fl">2.0</span>, l2<span class="op">=</span><span class="fl">0.0</span>, r2<span class="op">=</span><span class="fl">2.0</span>, l3<span class="op">=</span><span class="fl">100.0</span>, r3<span class="op">=</span><span class="fl">200.0</span>)</span>
 <span id="cb5-3"><a></a></span>
@@ -1369,7 +1369,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </section>
 <section id="step-2-draw-markers-and-initialize-weights-1" class="slide level2">
 <h2>Step 2: Draw markers and initialize weights</h2>
-<div id="c454410e" class="cell" data-execution_count="16">
+<div id="7e37fb34" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-code-line-numbers="1-11|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>particles2d <span class="op">=</span> ParticlesSPH(</span>
 <span id="cb6-2"><a></a>    comm_world<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb6-3"><a></a>    loading_params<span class="op">=</span>loading2d,</span>
@@ -1394,7 +1394,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </section>
 <section id="step-3-evaluate-the-sph-density-1" class="slide level2">
 <h2>Step 3: Evaluate the SPH density</h2>
-<div id="7e871abc" class="cell" data-execution_count="17">
+<div id="99906340" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-code-line-numbers="2-4|6|8-13|15-17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># evaluation grid</span></span>
 <span id="cb7-2"><a></a>eta1_2d <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">50</span>)</span>
 <span id="cb7-3"><a></a>eta2_2d <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">50</span>)</span>
@@ -1419,7 +1419,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </section>
 <section id="result-exact-vs.-sph-1" class="slide level2">
 <h2>Result: exact vs.&nbsp;SPH</h2>
-<div id="a294c555" class="cell" data-execution_count="18">
+<div id="d1762f48" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1463,7 +1463,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 = \int_0^T\!\int_{\Omega}
   \!\left(\frac{|\mathbf{u}(t,\mathbf{x})|^2}{2}
          -\frac{V(\mathbf{x})}{m}
-         -\kappa\ln\rho\right)
+         -\mathcal{U}(\rho)\right)
   \rho^{\mathrm{vol}}(t,\mathbf{x})\,\mathrm{d}\mathbf{x}\,\mathrm{d}t
 \]</span></p>
 <p><strong>Substitute the particle approximation</strong> <span class="math inline">\(\rho^{\mathrm{vol}}\approx\rho_N = \sum_{i=1}^N w_i\,\delta(\mathbf{x}-\mathbf{x}^i(t))\qquad\)</span> and use <span class="math inline">\(\mathbf{u}(t,\mathbf{x}^i(t))=\dot{\mathbf{x}}^i(t)=:\mathbf{v}_i(t)\,\,\,\)</span>:</p>
@@ -1472,12 +1472,12 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 = \int_0^T\sum_{i=1}^N w_i
 \!\left(\frac{|\mathbf{v}_i(t)|^2}{2}
        -\frac{V(\mathbf{x}^i(t))}{m}
-       -\kappa\ln\rho\!\left(t,\mathbf{x}^i(t)\right)\right)\mathrm{d}t
+       -\mathcal{U}\!\left(\rho\!\left(t,\mathbf{x}^i(t)\right)\right)\right)\mathrm{d}t
 \]</span></p>
 <div style="margin-top: -0.5em;">
 <ul>
 <li>The action becomes a <strong>finite-dimensional integral</strong> over particle trajectories</li>
-<li>The term <span class="math inline">\(\ln\rho(t,\mathbf{x}^i)\,\,\,\)</span> cannot be evaluated with <span class="math inline">\(\rho_N\,\,\,\)</span> (distributional) <span class="math inline">\(\Rightarrow\,\,\,\)</span> replace <span class="math inline">\(\rho\,\,\,\)</span> by a <strong>kernel-smoothed density</strong> <span class="math inline">\(\rho_{h,N}\,\,\,\)</span> (next slide)</li>
+<li>The term <span class="math inline">\(\mathcal{U}(\rho(t,\mathbf{x}^i))\,\,\,\)</span> cannot be evaluated with <span class="math inline">\(\rho_N\,\,\,\)</span> (distributional) <span class="math inline">\(\Rightarrow\,\,\,\)</span> replace <span class="math inline">\(\rho\,\,\,\)</span> by a <strong>kernel-smoothed density</strong> <span class="math inline">\(\rho_{h,N}\,\,\,\)</span> (next slide)</li>
 </ul>
 </div>
 </section>
@@ -1489,33 +1489,40 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
     \dot{\mathbf{x}}^i &amp;= \mathbf{v}_i\,,
     \\[3mm]
     \dot{\mathbf{v}}_i &amp;= -\frac{\nabla V(\mathbf{x}^i)}{m}
-    \;-\; \kappa\sum_{j=1}^N w_j
-      \!\left(\frac{1}{\rho_i}+\frac{1}{\rho_j}\right)
+    \;-\; \sum_{j=1}^N w_j
+      \!\left(\frac{\partial\mathcal{U}}{\partial\rho}(\rho_i)+\frac{\partial\mathcal{U}}{\partial\rho}(\rho_j)\right)
       \nabla W_h(\mathbf{x}^i-\mathbf{x}^j)\,,
 \end{aligned}
 \]</span></p>
 <p>where <span class="math inline">\(\rho_i := \rho_{h,N}(t,\mathbf{x}^i) = \sum_j w_j\,W_h(\mathbf{x}^i-\mathbf{x}^j)\quad\)</span>.</p>
 <ul>
 <li><strong>External force</strong>: <span class="math inline">\(-\nabla V/m\,\,\,\)</span> (gravity, external pressure gradient, …)</li>
-<li><strong>Pressure / viscous term</strong>: <span class="math inline">\(-\kappa\sum_j w_j\!\left(\tfrac{1}{\rho_i}+\tfrac{1}{\rho_j}\right)\nabla W_h\qquad\)</span> — the standard <em>SPH pressure force</em>, here <strong>derived from a variational principle</strong></li>
+<li><strong>Pressure force</strong>: <span class="math inline">\(-\sum_j w_j\!\left(\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_i)+\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_j)\right)\nabla W_h\qquad\)</span> — the standard <em>SPH pressure force</em>, here <strong>derived from a variational principle</strong></li>
 <li>Pair-wise anti-symmetric form ensures <strong>Newton’s third law</strong> and exact <strong>linear-momentum conservation</strong></li>
 </ul>
 </section>
 <section id="internal-energy-choices" class="slide level2">
 <h2>Internal energy choices</h2>
-<p>The pressure force generalizes to an arbitrary internal energy <span class="math inline">\(\mathcal{U}(\rho)\,\,\,\)</span> per unit mass:</p>
+<p>The <strong>thermodynamic pressure</strong> is defined by</p>
+<p><span class="math display">\[
+p(\rho) = \rho^2\,\frac{\partial\mathcal{U}}{\partial\rho}(\rho)
+\]</span></p>
+<div style="margin-top: -1em;">
+<p><strong>Isothermal:</strong> <span class="math inline">\(\mathcal{U}(\rho) = \kappa\,\ln\rho\,\,\,\)</span>, <span class="math inline">\(\;\kappa\,\,\,\)</span> constant <span class="math inline">\(\;\Rightarrow\;p(\rho) = \kappa\rho\)</span></p>
 <p><span class="math display">\[
 \dot{\mathbf{v}}_i = -\frac{\nabla V(\mathbf{x}^i)}{m}
-  - \sum_{j=1}^N w_j
-    \!\left(\frac{\partial\mathcal{U}}{\partial\rho}(\rho_i)
-           +\frac{\partial\mathcal{U}}{\partial\rho}(\rho_j)\right)
+  - \kappa\sum_{j=1}^N w_j
+    \!\left(\frac{1}{\rho_i}+\frac{1}{\rho_j}\right)
     \nabla W_h(\mathbf{x}^i-\mathbf{x}^j)
 \]</span></p>
-<p>Two closures are implemented in Struphy:</p>
-<ul>
-<li><p><strong>Isothermal:</strong> <span class="math inline">\(\mathcal{U}(\rho) = \kappa\,\ln\rho\,\,\,\)</span>, <span class="math inline">\(\;\kappa\,\,\,\)</span> constant <span class="math inline">\(\Rightarrow\;\partial_\rho\mathcal{U} = \kappa/\rho\,\,\,\)</span>, recovering <span class="math inline">\(\kappa\!\left(\tfrac{1}{\rho_i}+\tfrac{1}{\rho_j}\right)\,\,\,\)</span> in the equation above</p></li>
-<li><p><strong>Polytropic:</strong> <span class="math inline">\(\mathcal{U}(\rho) = \dfrac{\kappa\,\rho^{\gamma-1}}{\gamma-1}\,\,\,\)</span>, <span class="math inline">\(\;\kappa\,\,\,\)</span> polytropic constant, <span class="math inline">\(\;\gamma = C_p/C_v\,\,\,\)</span> adiabatic index <span class="math inline">\(\Rightarrow\;\partial_\rho\mathcal{U} = \kappa\,\rho^{\gamma-2}\)</span></p></li>
-</ul>
+<p><strong>Polytropic:</strong> <span class="math inline">\(\mathcal{U}(\rho) = \dfrac{\kappa\,\rho^{\gamma-1}}{\gamma-1}\,\,\,\)</span>, <span class="math inline">\(\;\kappa\,\,\,\)</span> polytropic constant, <span class="math inline">\(\;\gamma = C_p/C_v\,\,\,\)</span> adiabatic index <span class="math inline">\(\;\Rightarrow\;p(\rho) = \kappa\rho^\gamma\)</span></p>
+<p><span class="math display">\[
+\dot{\mathbf{v}}_i = -\frac{\nabla V(\mathbf{x}^i)}{m}
+  - \kappa\sum_{j=1}^N w_j
+    \!\left(\rho_i^{\gamma-2}+\rho_j^{\gamma-2}\right)
+    \nabla W_h(\mathbf{x}^i-\mathbf{x}^j)
+\]</span></p>
+</div>
 
 
 </section></section>
