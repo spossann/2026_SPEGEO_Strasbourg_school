@@ -2066,3 +2066,58 @@ $$
     \nabla W_h(\mathbf{x}^i-\mathbf{x}^j)
 $$
 :::
+
+
+## SPH viscous stress
+
+The **SPH velocity gradient** at particle $\boldsymbol\eta_i$ is obtained by differentiating the kernel interpolant:
+
+$$
+\nabla\mathbf{v}^{N,h}(\boldsymbol\eta_i)
+= \sum_l w_l\;\nabla W_h(\boldsymbol\eta_i - \boldsymbol\eta_l)\otimes\mathbf{v}_l
+$$
+
+where $(\mathbf{a}\otimes\mathbf{b})_{jk}=a_j b_k\,\,\,$ is the outer product, so that $(\nabla\mathbf{v})_{jk}=\partial_j v_k\,$.
+
+The **deviatoric strain rate** is the traceless symmetric part of $\nabla\mathbf{v}^{N,h}$, scaled by dynamic viscosity $\mu$:
+
+$$
+\boldsymbol\sigma(\boldsymbol\eta_i)
+=\mu\!\left[
+  \nabla\mathbf{v}^{N,h}(\boldsymbol\eta_i)
+  +\bigl(\nabla\mathbf{v}^{N,h}(\boldsymbol\eta_i)\bigr)^{\!\top}
+  -\tfrac{2}{3}\bigl(\nabla\cdot\mathbf{v}^{N,h}(\boldsymbol\eta_i)\bigr)\,\mathbf{I}
+\right]
+$$
+
+::: {style="margin-top: -0.5em;"}
+- **Symmetric:** $\boldsymbol\sigma=\boldsymbol\sigma^{\top}$
+- **Traceless:** $\mathrm{tr}(\boldsymbol\sigma)=0\quad$ (the isotropic divergence term cancels the trace of $\nabla\mathbf{v}+(\nabla\mathbf{v})^\top\,$)
+- Evaluated once per particle $i$ and stored as 9 coefficients $-w_i\,\boldsymbol\sigma(\boldsymbol\eta_i)/\rho^{N,h}(\boldsymbol\eta_i)$
+:::
+
+
+## SPH viscous force
+
+The SPH density at particle $\boldsymbol\eta_i$ is
+
+$$
+\rho^{N,h}(\boldsymbol\eta_i) = \sum_l w_l\,W_h(\boldsymbol\eta_i - \boldsymbol\eta_l)\,.
+$$
+
+Using the stored stress tensors, the **SPH viscous force** at particle $\boldsymbol\eta_i$ reads
+
+$$
+\bigl(-\nabla\cdot\boldsymbol\Pi_{\mathrm{vis}}\bigr)^{N,h}(\boldsymbol\eta_i)
+= \sum_l \frac{w_l}{\rho^{N,h}(\boldsymbol\eta_l)}\;\boldsymbol\sigma(\boldsymbol\eta_l)\,\nabla W_h(\boldsymbol\eta_i-\boldsymbol\eta_l)
+$$
+
+where $\boldsymbol\sigma(\boldsymbol\eta_l)\,\nabla W_h\,\,\,$ is the **matrix–vector product** of the $3\times3$ stress tensor at $\boldsymbol\eta_l$ with the kernel gradient.
+
+::: {style="margin-top: -0.5em;"}
+**Algorithmic structure**
+
+1. **Precompute:** evaluate $\rho^{N,h}(\boldsymbol\eta_i)$ and $\boldsymbol\sigma(\boldsymbol\eta_i)$ at each particle; store the 9 weighted coefficients $-w_i\,\boldsymbol\sigma(\boldsymbol\eta_i)/\rho^{N,h}(\boldsymbol\eta_i)$
+2. **Evaluate:** sum over neighbors — same neighbor-loop structure as the **pressure force**, but replacing scalar weights by tensor coefficients
+3. **Note:** the pair-wise antisymmetry of the pressure force does _not_ carry over automatically — momentum conservation requires careful numerical treatment
+:::
