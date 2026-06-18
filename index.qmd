@@ -1998,8 +1998,8 @@ $$
   \rho^{\mathrm{vol}}(t,\mathbf{x})\,\mathrm{d}\mathbf{x}\,\mathrm{d}t
 $$
 
-**Substitute the particle approximation** $\rho^{\mathrm{vol}}\approx\rho_N = \sum_{i=1}^N w_i\,\delta(\mathbf{x}-\mathbf{x}^i(t))$
-and use $\mathbf{u}(t,\mathbf{x}^i(t))=\dot{\mathbf{x}}^i(t)=:\mathbf{v}_i(t)$:
+**Substitute the particle approximation** $\rho^{\mathrm{vol}}\approx\rho_N = \sum_{i=1}^N w_i\,\delta(\mathbf{x}-\mathbf{x}^i(t))\qquad$
+and use $\mathbf{u}(t,\mathbf{x}^i(t))=\dot{\mathbf{x}}^i(t)=:\mathbf{v}_i(t)\,\,\,$:
 
 $$
 \mathcal{A}_N
@@ -2011,14 +2011,14 @@ $$
 
 ::: {style="margin-top: -0.5em;"}
 - The action becomes a **finite-dimensional integral** over particle trajectories
-- The term $\ln\rho(t,\mathbf{x}^i)$ cannot be evaluated with $\rho_N$ (distributional)
-  $\Rightarrow$ replace $\rho$ by a **kernel-smoothed density** $\rho_{h,N}$ (next slide)
+- The term $\ln\rho(t,\mathbf{x}^i)\,\,\,$ cannot be evaluated with $\rho_N\,\,\,$ (distributional)
+  $\Rightarrow\,\,\,$ replace $\rho\,\,\,$ by a **kernel-smoothed density** $\rho_{h,N}\,\,\,$ (next slide)
 :::
 
 
 ## Viscous Euler with SPH: Particle equations
 
-Euler–Lagrange equations of $\mathcal{A}_N$ (with $\rho_{h,N}$ replacing $\rho$)
+Euler–Lagrange equations of $\mathcal{A}_N\,\,\,$ (with $\rho_{h,N}\,\,\,$ replacing $\rho\,\,\,$)
 yield the **SPH particle system**:
 
 $$
@@ -2032,16 +2032,16 @@ $$
 \end{aligned}
 $$
 
-where $\rho_i := \rho_{h,N}(t,\mathbf{x}^i) = \sum_j w_j\,W_h(\mathbf{x}^i-\mathbf{x}^j)$.
+where $\rho_i := \rho_{h,N}(t,\mathbf{x}^i) = \sum_j w_j\,W_h(\mathbf{x}^i-\mathbf{x}^j)\quad$.
 
-- **External force**: $-\nabla V/m$ (gravity, external pressure gradient, …)
-- **Pressure / viscous term**: $-\kappa\sum_j w_j\!\left(\tfrac{1}{\rho_i}+\tfrac{1}{\rho_j}\right)\nabla W_h$ — the standard _SPH pressure force_, here **derived from a variational principle**
+- **External force**: $-\nabla V/m\,\,\,$ (gravity, external pressure gradient, …)
+- **Pressure / viscous term**: $-\kappa\sum_j w_j\!\left(\tfrac{1}{\rho_i}+\tfrac{1}{\rho_j}\right)\nabla W_h\qquad$ — the standard _SPH pressure force_, here **derived from a variational principle**
 - Pair-wise anti-symmetric form ensures **Newton's third law** and exact **linear-momentum conservation**
 
 
 ## Internal energy choices
 
-The pressure force generalizes to an arbitrary internal energy $\mathcal{U}(\rho)$ per unit mass:
+The pressure force generalizes to an arbitrary internal energy $\mathcal{U}(\rho)\,\,\,$ per unit mass:
 
 $$
 \dot{\mathbf{v}}_i = -\frac{\nabla V(\mathbf{x}^i)}{m}
@@ -2053,8 +2053,8 @@ $$
 
 Two closures are implemented in Struphy:
 
-- **Isothermal:** $\mathcal{U}(\rho) = \kappa\,\ln\rho$, $\;\kappa$ constant
-  $\Rightarrow\;\partial_\rho\mathcal{U} = \kappa/\rho$, recovering $\kappa\!\left(\tfrac{1}{\rho_i}+\tfrac{1}{\rho_j}\right)$ in the equation above
+- **Isothermal:** $\mathcal{U}(\rho) = \kappa\,\ln\rho\,\,\,$, $\;\kappa\,\,\,$ constant
+  $\Rightarrow\;\partial_\rho\mathcal{U} = \kappa/\rho\,\,\,$, recovering $\kappa\!\left(\tfrac{1}{\rho_i}+\tfrac{1}{\rho_j}\right)\,\,\,$ in the equation above
 
-- **Polytropic:** $\mathcal{U}(\rho) = \dfrac{\kappa\,\rho^{\gamma-1}}{\gamma-1}$, $\;\kappa$ polytropic constant, $\;\gamma = C_p/C_v$ adiabatic index
+- **Polytropic:** $\mathcal{U}(\rho) = \dfrac{\kappa\,\rho^{\gamma-1}}{\gamma-1}\,\,\,$, $\;\kappa\,\,\,$ polytropic constant, $\;\gamma = C_p/C_v\,\,\,$ adiabatic index
   $\Rightarrow\;\partial_\rho\mathcal{U} = \kappa\,\rho^{\gamma-2}$

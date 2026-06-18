@@ -19,7 +19,11 @@ h2 {
     font-size: 80% !important;
 }
 
-/* Keep inline math spacing default to avoid punctuation-dependent artifacts. */
+/* Small right margin on inline math (MathJax v2) prevents overlap with
+   surrounding text. Excludes display-mode math via the parent selector. */
+:not(.MathJax_Display) > .MathJax {
+  margin-right: 0.12em;
+}
 
 /* Slightly tighten vertical spacing around display math blocks ($$...$$). */
 .reveal .slides section p:has(> .math.display) {
