@@ -446,5 +446,26 @@
     "title": "Meshless  Structure-Preserving  Algorithms",
     "section": "Convergence: role of \\(h\\) and \\(N\\)",
     "text": "Convergence: role of \\(h\\) and \\(N\\)\n\n\n\n\nTwo competing sources of error:\n\nKernel width bias (large \\(h\\), right): kernel too wide — over-smoothing of sharp features\nSampling variance (small \\(h\\), left): too few markers inside the kernel support\n\nOptimal kernel width (red curve): trades off the two effects; as \\(N\\uparrow\\) the optimal \\(h\\) shrinks — more markers allow a finer kernel.\nConvergence: along the red curve the minimum error decreases with \\(N\\). Together \\(h\\to 0\\), \\(N\\to\\infty\\) with \\(N h^d \\to\\infty\\) ensures \\(\\rho_{h,N}\\to\\rho\\)."
+  },
+  {
+    "objectID": "index.html#viscous-euler-with-sph-lagrangian-discretization",
+    "href": "index.html#viscous-euler-with-sph-lagrangian-discretization",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Viscous Euler with SPH: Lagrangian discretization",
+    "text": "Viscous Euler with SPH: Lagrangian discretization\nLagrangian action for the viscous Euler equations:\n\\[\n\\mathcal{A}_{\\mathrm{Euler}}(\\mathbf{u},\\rho^{\\mathrm{vol}})\n= \\int_0^T\\!\\int_{\\Omega}\n  \\!\\left(\\frac{|\\mathbf{u}(t,\\mathbf{x})|^2}{2}\n         -\\frac{V(\\mathbf{x})}{m}\n         -\\kappa\\ln\\rho\\right)\n  \\rho^{\\mathrm{vol}}(t,\\mathbf{x})\\,\\mathrm{d}\\mathbf{x}\\,\\mathrm{d}t\n\\]\nSubstitute the particle approximation \\(\\rho^{\\mathrm{vol}}\\approx\\rho_N = \\sum_{i=1}^N w_i\\,\\delta(\\mathbf{x}-\\mathbf{x}^i(t))\\) and use \\(\\mathbf{u}(t,\\mathbf{x}^i(t))=\\dot{\\mathbf{x}}^i(t)=:\\mathbf{v}_i(t)\\):\n\\[\n\\mathcal{A}_N\n= \\int_0^T\\sum_{i=1}^N w_i\n\\!\\left(\\frac{|\\mathbf{v}_i(t)|^2}{2}\n       -\\frac{V(\\mathbf{x}^i(t))}{m}\n       -\\kappa\\ln\\rho\\!\\left(t,\\mathbf{x}^i(t)\\right)\\right)\\mathrm{d}t\n\\]\n\n\nThe action becomes a finite-dimensional integral over particle trajectories\nThe term \\(\\ln\\rho(t,\\mathbf{x}^i)\\) cannot be evaluated with \\(\\rho_N\\) (distributional) \\(\\Rightarrow\\) replace \\(\\rho\\) by a kernel-smoothed density \\(\\rho_{h,N}\\) (next slide)"
+  },
+  {
+    "objectID": "index.html#viscous-euler-with-sph-particle-equations",
+    "href": "index.html#viscous-euler-with-sph-particle-equations",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Viscous Euler with SPH: Particle equations",
+    "text": "Viscous Euler with SPH: Particle equations\nEuler–Lagrange equations of \\(\\mathcal{A}_N\\) (with \\(\\rho_{h,N}\\) replacing \\(\\rho\\)) yield the SPH particle system:\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{x}}^i &= \\mathbf{v}_i\\,,\n    \\\\[3mm]\n    \\dot{\\mathbf{v}}_i &= -\\frac{\\nabla V(\\mathbf{x}^i)}{m}\n    \\;-\\; \\kappa\\sum_{j=1}^N w_j\n      \\!\\left(\\frac{1}{\\rho_i}+\\frac{1}{\\rho_j}\\right)\n      \\nabla W_h(\\mathbf{x}^i-\\mathbf{x}^j)\\,,\n\\end{aligned}\n\\]\nwhere \\(\\rho_i := \\rho_{h,N}(t,\\mathbf{x}^i) = \\sum_j w_j\\,W_h(\\mathbf{x}^i-\\mathbf{x}^j)\\).\n\nExternal force: \\(-\\nabla V/m\\) (gravity, external pressure gradient, …)\nPressure / viscous term: \\(-\\kappa\\sum_j w_j\\!\\left(\\tfrac{1}{\\rho_i}+\\tfrac{1}{\\rho_j}\\right)\\nabla W_h\\) — the standard SPH pressure force, here derived from a variational principle\nPair-wise anti-symmetric form ensures Newton’s third law and exact linear-momentum conservation"
+  },
+  {
+    "objectID": "index.html#internal-energy-choices",
+    "href": "index.html#internal-energy-choices",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Internal energy choices",
+    "text": "Internal energy choices\nThe pressure force generalizes to an arbitrary internal energy \\(\\mathcal{U}(\\rho)\\) per unit mass:\n\\[\n\\dot{\\mathbf{v}}_i = -\\frac{\\nabla V(\\mathbf{x}^i)}{m}\n  - \\sum_{j=1}^N w_j\n    \\!\\left(\\frac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_i)\n           +\\frac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_j)\\right)\n    \\nabla W_h(\\mathbf{x}^i-\\mathbf{x}^j)\n\\]\nTwo closures are implemented in Struphy:\n\nIsothermal: \\(\\mathcal{U}(\\rho) = \\kappa\\,\\ln\\rho\\), \\(\\;\\kappa\\) constant \\(\\Rightarrow\\;\\partial_\\rho\\mathcal{U} = \\kappa/\\rho\\), recovering \\(\\kappa\\!\\left(\\tfrac{1}{\\rho_i}+\\tfrac{1}{\\rho_j}\\right)\\) in the equation above\nPolytropic: \\(\\mathcal{U}(\\rho) = \\dfrac{\\kappa\\,\\rho^{\\gamma-1}}{\\gamma-1}\\), \\(\\;\\kappa\\) polytropic constant, \\(\\;\\gamma = C_p/C_v\\) adiabatic index \\(\\Rightarrow\\;\\partial_\\rho\\mathcal{U} = \\kappa\\,\\rho^{\\gamma-2}\\)"
   }
 ]
