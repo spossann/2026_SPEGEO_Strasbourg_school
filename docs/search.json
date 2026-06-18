@@ -341,5 +341,61 @@
     "title": "Meshless  Structure-Preserving  Algorithms",
     "section": "5f. Density estimation and smoothing (cont.)",
     "text": "5f. Density estimation and smoothing (cont.)\nThe question of convergence is important:\n\n\\(\\rho_{h,N} \\to \\rho^\\textrm{vol}\\quad\\,\\) as \\(N \\to \\infty\\quad\\) and \\(h\\,\\) fixed\n\\(\\rho_{h,N} \\to \\rho^\\textrm{vol}\\quad\\,\\) as \\(h \\to 0\\quad\\) and \\(Nh^3\\,\\,\\) fixed\n\nThese are non-trivial questions for later."
+  },
+  {
+    "objectID": "index.html#overview-1",
+    "href": "index.html#overview-1",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Overview",
+    "text": "Overview\nWe demonstrate SPH kernel density evaluation in 1D using Struphy.\nGoal: recover the density \\(\\rho(\\eta_1) = 1.5 + \\cos(2\\pi\\eta_1)\\qquad\\,\\) on \\(\\eta_1 \\in [0,1]\\quad\\) from \\(N\\,\\) markers.\n\nSteps:\n\nDefine domain, background density, and perturbation\nCreate a ParticlesSPH object and draw markers\nInitialize weights \\(w_i\\) from the background density\nEvaluate the SPH density estimate \\(\\rho_{h,N}(\\eta_1) = \\sum_i w_i\\,W_h(\\eta_1 - \\eta_1^i)\\)\nCompare with the exact solution\n\nThe corresponding test is test_sph_evaluation_1d in struphy/src/struphy/pic/tests/test_sph.py."
+  },
+  {
+    "objectID": "index.html#target-density",
+    "href": "index.html#target-density",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Target density",
+    "text": "Target density\n\n\n\n\n\n\n\n\n\n\\[\n\\rho(\\eta_1) = \\underbrace{1.5}_{\\text{background}} + \\underbrace{\\cos(2\\pi\\eta_1)}_{\\text{perturbation}}, \\qquad \\eta_1 \\in [0,1]\n\\]"
+  },
+  {
+    "objectID": "index.html#step-1-domain-background-and-particles",
+    "href": "index.html#step-1-domain-background-and-particles",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Step 1: Domain, background, and particles",
+    "text": "Step 1: Domain, background, and particles\n\nimport numpy as np\n\n# from the Strpuhy API\nfrom struphy import (\n    BoundaryParameters, LoadingParameters, SortingParameters, domains, perturbations, equils\n)\n\n# not part of the API (loaded for this test only)\nfrom struphy.pic.particles import ParticlesSPH\n\n# 1D domain in logical coordinates eta1 in [0, 1]\ndomain = domains.Cuboid(l1=1.0, r1=2.0, l2=10.0, r2=20.0, l3=100.0, r3=200.0)\n\n# background n=1.5 plus perturbation: rho = 1.5 + cos(2*pi*eta1)\nbackground = equils.ConstantVelocity(n=1.5, density_profile=\"constant\")\nbackground.domain = domain\npert = {\"n\": perturbations.ModesCos(ls=(1,), amps=(1.0,))}\n\n# tesselation: 4 markers per box placed on a regular grid\nloading_params  = LoadingParameters(ppb=4, seed=1607, loading=\"tesselation\")\nboundary_params = BoundaryParameters(bc_sph=(\"periodic\", \"periodic\", \"periodic\"))\nsorting_params  = SortingParameters(boxes_per_dim=(24, 1, 1))"
+  },
+  {
+    "objectID": "index.html#step-2-draw-markers-and-initialize-weights",
+    "href": "index.html#step-2-draw-markers-and-initialize-weights",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Step 2: Draw markers and initialize weights",
+    "text": "Step 2: Draw markers and initialize weights\n\nparticles = ParticlesSPH(\n    comm_world=None,          # no MPI for this example\n    loading_params=loading_params,\n    boundary_params=boundary_params,\n    sorting_params=sorting_params,\n    bufsize=1.0,\n    domain=domain,\n    background=background,\n    perturbations=pert,\n    n_as_volume_form=True,\n)\n\nparticles.draw_markers(sort=False)  # place markers at initial positions\nparticles.initialize_weights()      # compute w_i from background density\n\n\n\ndraw_markers places one marker per cell center (tesselation) or draws random samples\ninitialize_weights sets \\(w_i = \\int_{\\Omega_0^i} \\rho^\\text{vol}(0, \\mathbf x_0)\\,\\mathrm d\\mathbf x_0\\)"
+  },
+  {
+    "objectID": "index.html#step-3-evaluate-the-sph-density",
+    "href": "index.html#step-3-evaluate-the-sph-density",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Step 3: Evaluate the SPH density",
+    "text": "Step 3: Evaluate the SPH density\n\n# evaluation grid\neta1 = np.linspace(0, 1.0, 100)\nee1, ee2, ee3 = np.meshgrid(eta1, np.array([0.0]), np.array([0.0]), indexing=\"ij\")\n\n# bandwidth = box size h = 1/24\nh1, h2, h3 = 1.0 / 24, 1.0, 1.0\n\nrho_sph = particles.eval_density(\n    ee1, ee2, ee3,\n    h1=h1, h2=h2, h3=h3,\n    kernel_type=\"gaussian_1d\",\n    derivative=0,\n)\n\nrho_exact = 1.5 + np.cos(2 * np.pi * eta1)\nerr = np.max(np.abs(np.array(rho_sph).squeeze() - rho_exact)) / np.max(np.abs(rho_exact))\nprint(f\"Max relative error: {err:.4f}\")\n\nMax relative error: 0.0008"
+  },
+  {
+    "objectID": "index.html#result-exact-vs.-sph",
+    "href": "index.html#result-exact-vs.-sph",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Result: exact vs. SPH",
+    "text": "Result: exact vs. SPH\n\n\n\n\n\n\n\n\n\n\n\\[\n\\rho_{h,N}(\\eta_1) = \\sum_{i=1}^N w_i\\, W_h(\\eta_1 - \\eta_1^i) \\approx 1.5 + \\cos(2\\pi\\eta_1)\n\\]"
+  },
+  {
+    "objectID": "index.html#sph-smoothing-kernels",
+    "href": "index.html#sph-smoothing-kernels",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "SPH smoothing kernels",
+    "text": "SPH smoothing kernels\n\n\n\n\n\n\n\n\n\n\n\\[\n\\rho_{h,N}(\\mathbf{x}) = \\sum_i w_i\\, W_h(\\mathbf{x} - \\mathbf{x}^i), \\qquad\nW_h(\\mathbf{x}) = \\frac{1}{h}\\,W\\!\\left(\\frac{|\\mathbf{x}|}{h}\\right)\n\\]"
+  },
+  {
+    "objectID": "index.html#comparing-sph-kernels",
+    "href": "index.html#comparing-sph-kernels",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Comparing SPH kernels",
+    "text": "Comparing SPH kernels\n\n\n\n\n\n\n\n\n\nAll three kernels recover the density well."
   }
 ]

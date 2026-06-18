@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="styles.css">
@@ -334,7 +400,7 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 \qquad
 \delta \mathbf x(t_0)=\delta \mathbf x(t_1)=\mathbf 0.
 \]</span></p>
-<div id="3bfeda99" class="cell" data-execution_count="1">
+<div id="662194d8" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -585,7 +651,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 </section>
 <section id="a.-lagrangian-vs.-eulerian-sketches" class="slide level2">
 <h2>3a. Lagrangian vs.&nbsp;Eulerian sketches</h2>
-<div id="d3cd6f7c" class="cell" data-execution_count="2">
+<div id="fe7b2a5a" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -647,7 +713,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 <div style="margin-top: -1.5em;">
-<div id="4ebb72fc" class="cell" data-execution_count="3">
+<div id="be5dc6b6" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -790,7 +856,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 <p>Divide the initial domain <span class="math inline">\(\Omega_0\,\)</span> into small subregions such that <span class="math inline">\(\bigcup_i \Omega_0^i = \Omega_0:\)</span></p>
-<div id="1359d745" class="cell" data-execution_count="4">
+<div id="243c5d58" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1044,7 +1110,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <p><span class="math display">\[
 \rho_{h,N}(t, \mathbf x^*) = \sum_{i: \|\mathbf x^* - \mathbf x^i(t)\| &lt; h} w_i\, W_h(\mathbf x^* - \mathbf x^i(t)).
 \]</span></p>
-<div id="e16b5a32" class="cell" data-execution_count="5">
+<div id="91188301" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1067,7 +1133,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <li>compute the sum over the particles in these boxes and ignore the rest</li>
 </ol></li>
 </ul>
-<div id="21c916d9" class="cell" data-execution_count="6">
+<div id="fd53b514" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1086,11 +1152,169 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </ul>
 <p>These are non-trivial questions for later.</p>
 </section></section>
+<section>
 <section id="practical-part-i-marker-drawing-and-density-evaluation" class="title-slide slide level1 center">
 <h1>Practical Part I: Marker drawing and density evaluation</h1>
 
-
 </section>
+<section id="overview-1" class="slide level2">
+<h2>Overview</h2>
+<p>We demonstrate SPH kernel density evaluation in 1D using Struphy.</p>
+<p><strong>Goal:</strong> recover the density <span class="math inline">\(\rho(\eta_1) = 1.5 + \cos(2\pi\eta_1)\qquad\,\)</span> on <span class="math inline">\(\eta_1 \in [0,1]\quad\)</span> from <span class="math inline">\(N\,\)</span> markers.</p>
+<div class="fragment">
+<p><strong>Steps:</strong></p>
+<ol type="1">
+<li>Define domain, background density, and perturbation</li>
+<li>Create a <code>ParticlesSPH</code> object and draw markers</li>
+<li>Initialize weights <span class="math inline">\(w_i\)</span> from the background density</li>
+<li>Evaluate the SPH density estimate <span class="math inline">\(\rho_{h,N}(\eta_1) = \sum_i w_i\,W_h(\eta_1 - \eta_1^i)\)</span></li>
+<li>Compare with the exact solution</li>
+</ol>
+<p>The corresponding test is <code>test_sph_evaluation_1d</code> in <code>struphy/src/struphy/pic/tests/test_sph.py</code>.</p>
+</div>
+</section>
+<section id="target-density" class="slide level2">
+<h2>Target density</h2>
+<div id="3ed1d3b0" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-8-output-1.png" class="quarto-figure quarto-figure-center" width="949" height="258"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+\rho(\eta_1) = \underbrace{1.5}_{\text{background}} + \underbrace{\cos(2\pi\eta_1)}_{\text{perturbation}}, \qquad \eta_1 \in [0,1]
+\]</span></p>
+</section>
+<section id="step-1-domain-background-and-particles" class="slide level2">
+<h2>Step 1: Domain, background, and particles</h2>
+<div id="791b53c1" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1-6|8-9|11-14|16-19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a><span class="co"># from the Strpuhy API</span></span>
+<span id="cb1-4"><a></a><span class="im">from</span> struphy <span class="im">import</span> (</span>
+<span id="cb1-5"><a></a>    BoundaryParameters, LoadingParameters, SortingParameters, domains, perturbations, equils</span>
+<span id="cb1-6"><a></a>)</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a><span class="co"># not part of the API (loaded for this test only)</span></span>
+<span id="cb1-9"><a></a><span class="im">from</span> struphy.pic.particles <span class="im">import</span> ParticlesSPH</span>
+<span id="cb1-10"><a></a></span>
+<span id="cb1-11"><a></a><span class="co"># 1D domain in logical coordinates eta1 in [0, 1]</span></span>
+<span id="cb1-12"><a></a>domain <span class="op">=</span> domains.Cuboid(l1<span class="op">=</span><span class="fl">1.0</span>, r1<span class="op">=</span><span class="fl">2.0</span>, l2<span class="op">=</span><span class="fl">10.0</span>, r2<span class="op">=</span><span class="fl">20.0</span>, l3<span class="op">=</span><span class="fl">100.0</span>, r3<span class="op">=</span><span class="fl">200.0</span>)</span>
+<span id="cb1-13"><a></a></span>
+<span id="cb1-14"><a></a><span class="co"># background n=1.5 plus perturbation: rho = 1.5 + cos(2*pi*eta1)</span></span>
+<span id="cb1-15"><a></a>background <span class="op">=</span> equils.ConstantVelocity(n<span class="op">=</span><span class="fl">1.5</span>, density_profile<span class="op">=</span><span class="st">"constant"</span>)</span>
+<span id="cb1-16"><a></a>background.domain <span class="op">=</span> domain</span>
+<span id="cb1-17"><a></a>pert <span class="op">=</span> {<span class="st">"n"</span>: perturbations.ModesCos(ls<span class="op">=</span>(<span class="dv">1</span>,), amps<span class="op">=</span>(<span class="fl">1.0</span>,))}</span>
+<span id="cb1-18"><a></a></span>
+<span id="cb1-19"><a></a><span class="co"># tesselation: 4 markers per box placed on a regular grid</span></span>
+<span id="cb1-20"><a></a>loading_params  <span class="op">=</span> LoadingParameters(ppb<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">1607</span>, loading<span class="op">=</span><span class="st">"tesselation"</span>)</span>
+<span id="cb1-21"><a></a>boundary_params <span class="op">=</span> BoundaryParameters(bc_sph<span class="op">=</span>(<span class="st">"periodic"</span>, <span class="st">"periodic"</span>, <span class="st">"periodic"</span>))</span>
+<span id="cb1-22"><a></a>sorting_params  <span class="op">=</span> SortingParameters(boxes_per_dim<span class="op">=</span>(<span class="dv">24</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-2-draw-markers-and-initialize-weights" class="slide level2">
+<h2>Step 2: Draw markers and initialize weights</h2>
+<div id="a46d7e2e" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" data-code-line-numbers="1-11|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>particles <span class="op">=</span> ParticlesSPH(</span>
+<span id="cb2-2"><a></a>    comm_world<span class="op">=</span><span class="va">None</span>,          <span class="co"># no MPI for this example</span></span>
+<span id="cb2-3"><a></a>    loading_params<span class="op">=</span>loading_params,</span>
+<span id="cb2-4"><a></a>    boundary_params<span class="op">=</span>boundary_params,</span>
+<span id="cb2-5"><a></a>    sorting_params<span class="op">=</span>sorting_params,</span>
+<span id="cb2-6"><a></a>    bufsize<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb2-7"><a></a>    domain<span class="op">=</span>domain,</span>
+<span id="cb2-8"><a></a>    background<span class="op">=</span>background,</span>
+<span id="cb2-9"><a></a>    perturbations<span class="op">=</span>pert,</span>
+<span id="cb2-10"><a></a>    n_as_volume_form<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-11"><a></a>)</span>
+<span id="cb2-12"><a></a></span>
+<span id="cb2-13"><a></a>particles.draw_markers(sort<span class="op">=</span><span class="va">False</span>)  <span class="co"># place markers at initial positions</span></span>
+<span id="cb2-14"><a></a>particles.initialize_weights()      <span class="co"># compute w_i from background density</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<ul>
+<li><code>draw_markers</code> places one marker per cell center (tesselation) or draws random samples</li>
+<li><code>initialize_weights</code> sets <span class="math inline">\(w_i = \int_{\Omega_0^i} \rho^\text{vol}(0, \mathbf x_0)\,\mathrm d\mathbf x_0\)</span></li>
+</ul>
+</div>
+</section>
+<section id="step-3-evaluate-the-sph-density" class="slide level2">
+<h2>Step 3: Evaluate the SPH density</h2>
+<div id="ccede231" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="2-3|5-6|8-13|15-17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># evaluation grid</span></span>
+<span id="cb3-2"><a></a>eta1 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">100</span>)</span>
+<span id="cb3-3"><a></a>ee1, ee2, ee3 <span class="op">=</span> np.meshgrid(eta1, np.array([<span class="fl">0.0</span>]), np.array([<span class="fl">0.0</span>]), indexing<span class="op">=</span><span class="st">"ij"</span>)</span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a><span class="co"># bandwidth = box size h = 1/24</span></span>
+<span id="cb3-6"><a></a>h1, h2, h3 <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">24</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span></span>
+<span id="cb3-7"><a></a></span>
+<span id="cb3-8"><a></a>rho_sph <span class="op">=</span> particles.eval_density(</span>
+<span id="cb3-9"><a></a>    ee1, ee2, ee3,</span>
+<span id="cb3-10"><a></a>    h1<span class="op">=</span>h1, h2<span class="op">=</span>h2, h3<span class="op">=</span>h3,</span>
+<span id="cb3-11"><a></a>    kernel_type<span class="op">=</span><span class="st">"gaussian_1d"</span>,</span>
+<span id="cb3-12"><a></a>    derivative<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb3-13"><a></a>)</span>
+<span id="cb3-14"><a></a></span>
+<span id="cb3-15"><a></a>rho_exact <span class="op">=</span> <span class="fl">1.5</span> <span class="op">+</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> eta1)</span>
+<span id="cb3-16"><a></a>err <span class="op">=</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(np.array(rho_sph).squeeze() <span class="op">-</span> rho_exact)) <span class="op">/</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(rho_exact))</span>
+<span id="cb3-17"><a></a><span class="bu">print</span>(<span class="ss">f"Max relative error: </span><span class="sc">{</span>err<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max relative error: 0.0008</code></pre>
+</div>
+</div>
+</section>
+<section id="result-exact-vs.-sph" class="slide level2">
+<h2>Result: exact vs.&nbsp;SPH</h2>
+<div id="13f5c26d" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-12-output-1.png" class="quarto-figure quarto-figure-center" width="949" height="296"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="text-align: center;">
+<p><span class="math display">\[
+\rho_{h,N}(\eta_1) = \sum_{i=1}^N w_i\, W_h(\eta_1 - \eta_1^i) \approx 1.5 + \cos(2\pi\eta_1)
+\]</span></p>
+</div>
+</section>
+<section id="sph-smoothing-kernels" class="slide level2">
+<h2>SPH smoothing kernels</h2>
+<div id="33ca2a5d" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-13-output-1.png" class="quarto-figure quarto-figure-center" width="948" height="296"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="text-align: center;">
+<p><span class="math display">\[
+\rho_{h,N}(\mathbf{x}) = \sum_i w_i\, W_h(\mathbf{x} - \mathbf{x}^i), \qquad
+W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
+\]</span></p>
+</div>
+</section>
+<section id="comparing-sph-kernels" class="slide level2">
+<h2>Comparing SPH kernels</h2>
+<div id="5727ba17" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-14-output-1.png" class="quarto-figure quarto-figure-center" width="1141" height="294"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>All three kernels recover the density well.</p>
+
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="dog-cartoon-struphy.jpg" class="slide-logo"></p>
