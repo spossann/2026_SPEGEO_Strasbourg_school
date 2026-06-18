@@ -1592,7 +1592,7 @@ These are non-trivial questions for later.
 
 We demonstrate SPH kernel density evaluation in 1D using Struphy.
 
-**Goal:** recover the density $\rho(\eta_1) = 1.5 + \cos(2\pi\eta_1)\qquad\,$ on $\eta_1 \in [0,1]\quad$ from $N\,$ markers.
+**Goal:** recover the density $\rho(\eta_1) = 1.5 + \cos(2\pi\eta_1)\qquad\,\,$ on $\eta_1 \in [0,1]\quad$ from $N\,$ markers.
 
 . . .
 
@@ -1640,7 +1640,7 @@ $$
 ## Step 1: Domain, background, and particles
 
 ```{python}
-#| code-line-numbers: "1-6|8-9|11-14|16-19"
+#| code-line-numbers: "1-6|8-9|11-14|16-18|19-22"
 import numpy as np
 
 # from the Strpuhy API
@@ -1815,7 +1815,7 @@ All three kernels recover the density well.
 
 We extend the SPH density evaluation to **2D** using Struphy.
 
-**Goal:** recover $\rho(\eta_1,\eta_2) = 1.5 + \cos(2\pi\eta_1)\cos(2\pi\eta_2)\qquad\qquad$ on $(\eta_1,\eta_2)\in[0,1]^2\quad\,$ from $N\,$ markers.
+**Goal:** recover $\rho(\eta_1,\eta_2) = 1.5 + \cos(2\pi\eta_1)\cos(2\pi\eta_2)\qquad\qquad$ on $(\eta_1,\eta_2)\in[0,1]^2\quad\,\,$ from $N\,$ markers.
 
 . . .
 
@@ -1974,10 +1974,10 @@ $$
 - **Sampling variance** (small $h$, left): too few markers inside the kernel support
 
 **Optimal kernel width** (red curve): trades off the two effects;
-as $N\uparrow$ the optimal $h$ shrinks — more markers allow a finer kernel.
+as $N\uparrow\,$ the optimal $h$ shrinks — more markers allow a finer kernel.
 
 **Convergence:** along the red curve the minimum error decreases with $N$.
-Together $h\to 0$, $N\to\infty$ with $N h^d \to\infty$ ensures $\rho_{h,N}\to\rho$.
+Together $h\to 0\,\,$, $N\to\infty\,\,$ with $N h^d \to\infty$ ensures $\rho_{h,N}\to\rho\,\,$.
 :::
 :::
 
@@ -1998,8 +1998,8 @@ $$
   \rho^{\mathrm{vol}}(t,\mathbf{x})\,\mathrm{d}\mathbf{x}\,\mathrm{d}t
 $$
 
-**Substitute the particle approximation** $\rho^{\mathrm{vol}}\approx\rho_N = \sum_{i=1}^N w_i\,\delta(\mathbf{x}-\mathbf{x}^i(t))\qquad$
-and use $\mathbf{u}(t,\mathbf{x}^i(t))=\dot{\mathbf{x}}^i(t)=:\mathbf{v}_i(t)\,\,\,$:
+**Substitute the particle approximation** $\rho^{\mathrm{vol}}\approx\rho_N = \sum_{i=1}^N w_i\,\delta(\mathbf{x}-\mathbf{x}^i(t))\qquad\quad\,\,$
+and use $\mathbf{u}(t,\mathbf{x}^i(t))=\dot{\mathbf{x}}^i(t)=:\mathbf{v}_i(t)\qquad\,\,\,$:
 
 $$
 \mathcal{A}_N
@@ -2011,14 +2011,14 @@ $$
 
 ::: {style="margin-top: -0.5em;"}
 - The action becomes a **finite-dimensional integral** over particle trajectories
-- The term $\mathcal{U}(\rho(t,\mathbf{x}^i))\,\,\,$ cannot be evaluated with $\rho_N\,\,\,$ (distributional)
-  $\Rightarrow\,\,\,$ replace $\rho\,\,\,$ by a **kernel-smoothed density** $\rho_{h,N}\,\,\,$ (next slide)
+- The term $\mathcal{U}(\rho(t,\mathbf{x}^i))\,\,\,\,\,$ cannot be evaluated with $\rho_N\,\,\,$ (distributional)
+  $\Rightarrow\,\,\,$ replace $\rho\,\,$ by a **kernel-smoothed density** $\rho_{h,N}\,\,\,$ (next slide)
 :::
 
 
 ## Viscous Euler with SPH: Particle equations
 
-Euler–Lagrange equations of $\mathcal{A}_N\,\,\,$ (with $\rho_{h,N}\,\,\,$ replacing $\rho\,\,\,$)
+Euler–Lagrange equations of $\mathcal{A}_N\,\,$ (with $\rho_{h,N}\,\,$ replacing $\rho\,\,$)
 yield the **SPH particle system**:
 
 $$
@@ -2032,10 +2032,10 @@ $$
 \end{aligned}
 $$
 
-where $\rho_i := \rho_{h,N}(t,\mathbf{x}^i) = \sum_j w_j\,W_h(\mathbf{x}^i-\mathbf{x}^j)\quad$.
+where $\rho_i := \rho_{h,N}(t,\mathbf{x}^i) = \sum_j w_j\,W_h(\mathbf{x}^i-\mathbf{x}^j)\qquad\,\,\,$.
 
-- **External force**: $-\nabla V/m\,\,\,$ (gravity, external pressure gradient, …)
-- **Pressure force**: $-\sum_j w_j\!\left(\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_i)+\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_j)\right)\nabla W_h\qquad$ — the standard _SPH pressure force_, here **derived from a variational principle**
+- **External force**: $-\nabla V/m\,\,\,\,$ (gravity, external pressure gradient, …)
+- **Pressure force**: $-\sum_j w_j\!\left(\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_i)+\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_j)\right)\nabla W_h\qquad\,\,\,\,\,$ — the standard _SPH pressure force_, here **derived from a variational principle**
 - Pair-wise anti-symmetric form ensures **Newton's third law** and exact **linear-momentum conservation**
 
 
@@ -2048,7 +2048,7 @@ p(\rho) = \rho^2\,\frac{\partial\mathcal{U}}{\partial\rho}(\rho)
 $$
 
 ::: {style="margin-top: -1em;"}
-**Isothermal:** $\mathcal{U}(\rho) = \kappa\,\ln\rho\,\,\,$, $\;\kappa\,\,\,$ constant $\;\Rightarrow\;p(\rho) = \kappa\rho$
+**Isothermal:** $\mathcal{U}(\rho) = \kappa\,\ln\rho\quad\,\,$, $\;\kappa\,\,\,$ constant $\;\Rightarrow\;p(\rho) = \kappa\rho$
 
 $$
 \dot{\mathbf{v}}_i = -\frac{\nabla V(\mathbf{x}^i)}{m}
@@ -2057,7 +2057,7 @@ $$
     \nabla W_h(\mathbf{x}^i-\mathbf{x}^j)
 $$
 
-**Polytropic:** $\mathcal{U}(\rho) = \dfrac{\kappa\,\rho^{\gamma-1}}{\gamma-1}\,\,\,$, $\;\kappa\,\,\,$ polytropic constant, $\;\gamma = C_p/C_v\,\,\,$ adiabatic index $\;\Rightarrow\;p(\rho) = \kappa\rho^\gamma$
+**Polytropic:** $\mathcal{U}(\rho) = \dfrac{\kappa\,\rho^{\gamma-1}}{\gamma-1}\quad\,\,\,$, $\;\kappa\,\,\,$ polytropic constant, $\;\gamma = C_p/C_v\quad$ adiabatic index $\;\Rightarrow\;p(\rho) = \kappa\rho^\gamma$
 
 $$
 \dot{\mathbf{v}}_i = -\frac{\nabla V(\mathbf{x}^i)}{m}
@@ -2077,9 +2077,9 @@ $$
 = \sum_l w_l\;\nabla W_h(\boldsymbol\eta_i - \boldsymbol\eta_l)\otimes\mathbf{v}_l
 $$
 
-where $(\mathbf{a}\otimes\mathbf{b})_{jk}=a_j b_k\,\,\,$ is the outer product, so that $(\nabla\mathbf{v})_{jk}=\partial_j v_k\,$.
+where $(\mathbf{a}\otimes\mathbf{b})_{jk}=a_j b_k\qquad$ is the outer product, so that $(\nabla\mathbf{v})_{jk}=\partial_j v_k\qquad$.
 
-The **deviatoric strain rate** is the traceless symmetric part of $\nabla\mathbf{v}^{N,h}$, scaled by dynamic viscosity $\mu$:
+The **deviatoric strain rate** is the traceless symmetric part of $\nabla\mathbf{v}^{N,h}\,$, scaled by dynamic viscosity $\mu$:
 
 $$
 \boldsymbol\sigma(\boldsymbol\eta_i)
@@ -2092,7 +2092,7 @@ $$
 
 ::: {style="margin-top: -0.5em;"}
 - **Symmetric:** $\boldsymbol\sigma=\boldsymbol\sigma^{\top}$
-- **Traceless:** $\mathrm{tr}(\boldsymbol\sigma)=0\quad$ (the isotropic divergence term cancels the trace of $\nabla\mathbf{v}+(\nabla\mathbf{v})^\top\,$)
+- **Traceless:** $\mathrm{tr}(\boldsymbol\sigma)=0\quad$, the isotropic divergence term cancels the trace of $\nabla\mathbf{v}+(\nabla\mathbf{v})^\top\,\,\,$
 - Evaluated once per particle $i$ and stored as 9 coefficients $-w_i\,\boldsymbol\sigma(\boldsymbol\eta_i)/\rho^{N,h}(\boldsymbol\eta_i)$
 :::
 
@@ -2112,12 +2112,83 @@ $$
 = \sum_l \frac{w_l}{\rho^{N,h}(\boldsymbol\eta_l)}\;\boldsymbol\sigma(\boldsymbol\eta_l)\,\nabla W_h(\boldsymbol\eta_i-\boldsymbol\eta_l)
 $$
 
-where $\boldsymbol\sigma(\boldsymbol\eta_l)\,\nabla W_h\,\,\,$ is the **matrix–vector product** of the $3\times3$ stress tensor at $\boldsymbol\eta_l$ with the kernel gradient.
+where $\boldsymbol\sigma(\boldsymbol\eta_l)\,\nabla W_h\quad$ is the **matrix–vector product** of the $3\times3\,\,$ stress tensor at $\boldsymbol\eta_l$ with the kernel gradient.
 
-::: {style="margin-top: -0.5em;"}
-**Algorithmic structure**
 
-1. **Precompute:** evaluate $\rho^{N,h}(\boldsymbol\eta_i)$ and $\boldsymbol\sigma(\boldsymbol\eta_i)$ at each particle; store the 9 weighted coefficients $-w_i\,\boldsymbol\sigma(\boldsymbol\eta_i)/\rho^{N,h}(\boldsymbol\eta_i)$
-2. **Evaluate:** sum over neighbors — same neighbor-loop structure as the **pressure force**, but replacing scalar weights by tensor coefficients
-3. **Note:** the pair-wise antisymmetry of the pressure force does _not_ carry over automatically — momentum conservation requires careful numerical treatment
+
+# Tutorial Simulations
+
+
+## Hagen–Poiseuille flow (Monte Carlo loading)
+
+::: {.columns}
+::: {.column width="45%"}
+- Pressure-driven viscous flow through a 2D channel
+- Exact continuum solution: **parabolic velocity profile** $u_x \propto R^2 - r^2$
+- SPH particles self-organize into the Poiseuille profile; **no-slip** boundary enforced via ghost particles
+- Entropy production rate consistent with viscous dissipation ($\kappa > 0\,\,$)
+- Markers drawn by **Monte Carlo sampling** from the initial density
 :::
+::: {.column width="55%"}
+
+```{=html}
+<video width="100%" data-autoplay loop muted playsinline>
+  <source src="hagen_poiseuille_mc.mp4" type="video/mp4">
+</video>
+```
+
+:::
+:::
+
+
+## Hagen–Poiseuille flow (Tesselation loading)
+
+::: {.columns}
+::: {.column width="45%"}
+- Same pressure-driven channel flow, markers placed on a regular **tesselation grid**
+- More uniform initial marker distribution reduces density-estimate noise
+- "Grid instability", small perturbations grow into a "zig-zag" pattern
+:::
+::: {.column width="55%"}
+
+```{=html}
+<video width="100%" data-autoplay loop muted playsinline>
+  <source src="hagen_poiseuille.mp4" type="video/mp4">
+</video>
+```
+
+:::
+:::
+
+
+## Dam break
+
+::: {.columns}
+::: {.column width="45%"}
+- Free-surface gravity flow: water column collapses at $t=0$
+- SPH handles the moving **free surface naturally** — no mesh, no interface tracking
+- Wave propagation, bed wetting, and impact/splashing captured
+- Strong test for **mass conservation** and positivity of density
+:::
+::: {.column width="55%"}
+
+```{=html}
+<video width="100%" data-autoplay loop muted playsinline>
+  <source src="dam_break.mp4" type="video/mp4">
+</video>
+```
+
+:::
+:::
+
+
+## SPH tutorial notebooks
+
+Available in the [struphy-hub/struphy](https://github.com/struphy-hub/struphy/tree/main/tutorials) repository on GitHub (`tutorials/` folder):
+
+- [`tutorial_beltrami_sph.ipynb`](https://github.com/struphy-hub/struphy/blob/main/tutorials/tutorial_beltrami_sph.ipynb)
+- [`tutorial_gas_expansion_sph.ipynb`](https://github.com/struphy-hub/struphy/blob/main/tutorials/tutorial_gas_expansion_sph.ipynb)
+- [`tutorial_viscous_euler_sph.ipynb`](https://github.com/struphy-hub/struphy/blob/main/tutorials/tutorial_viscous_euler_sph.ipynb)
+- [`tutorial_velocity_diffusion_sph.ipynb`](https://github.com/struphy-hub/struphy/blob/main/tutorials/tutorial_velocity_diffusion_sph.ipynb)
+- [`tutorial_hagen_poiseuille_sph.ipynb`](https://github.com/struphy-hub/struphy/blob/main/tutorials/tutorial_hagen_poiseuille_sph.ipynb)
+- [`tutorial_dam_break_sph.ipynb`](https://github.com/struphy-hub/struphy/blob/main/tutorials/tutorial_dam_break_sph.ipynb)
