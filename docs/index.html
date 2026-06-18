@@ -400,7 +400,7 @@ m\,\ddot{\mathbf x} = -\frac{\partial V}{\partial \mathbf x}
 \qquad
 \delta \mathbf x(t_0)=\delta \mathbf x(t_1)=\mathbf 0.
 \]</span></p>
-<div id="662194d8" class="cell" data-execution_count="1">
+<div id="427b9ad1" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -651,7 +651,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 </section>
 <section id="a.-lagrangian-vs.-eulerian-sketches" class="slide level2">
 <h2>3a. Lagrangian vs.&nbsp;Eulerian sketches</h2>
-<div id="fe7b2a5a" class="cell" data-execution_count="2">
+<div id="0b7623ba" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -713,7 +713,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 <div style="margin-top: -1.5em;">
-<div id="be5dc6b6" class="cell" data-execution_count="3">
+<div id="50379d4a" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -856,7 +856,7 @@ u_\varepsilon(t,\mathbf x) = u(t,\mathbf x) + \varepsilon\,\eta(t,\mathbf x),
 \int_{\Phi_t(\Omega_0)} \rho^\textrm{vol}(t, \mathbf x)\,\textrm d \mathbf x = \int_{\Omega_0} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d \mathbf x_0\qquad \forall \,\Omega_0.
 \]</span></p>
 <p>Divide the initial domain <span class="math inline">\(\Omega_0\,\)</span> into small subregions such that <span class="math inline">\(\bigcup_i \Omega_0^i = \Omega_0:\)</span></p>
-<div id="243c5d58" class="cell" data-execution_count="4">
+<div id="66adbee1" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1110,7 +1110,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <p><span class="math display">\[
 \rho_{h,N}(t, \mathbf x^*) = \sum_{i: \|\mathbf x^* - \mathbf x^i(t)\| &lt; h} w_i\, W_h(\mathbf x^* - \mathbf x^i(t)).
 \]</span></p>
-<div id="91188301" class="cell" data-execution_count="5">
+<div id="ddd035de" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1133,7 +1133,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 <li>compute the sum over the particles in these boxes and ignore the rest</li>
 </ol></li>
 </ul>
-<div id="fd53b514" class="cell" data-execution_count="6">
+<div id="93fc76fa" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1175,7 +1175,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="target-density" class="slide level2">
 <h2>Target density</h2>
-<div id="3ed1d3b0" class="cell" data-execution_count="7">
+<div id="c75c5d6a" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1190,7 +1190,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="step-1-domain-background-and-particles" class="slide level2">
 <h2>Step 1: Domain, background, and particles</h2>
-<div id="791b53c1" class="cell" data-execution_count="8">
+<div id="d9a5695b" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1-6|8-9|11-14|16-19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a></a></span>
 <span id="cb1-3"><a></a><span class="co"># from the Strpuhy API</span></span>
@@ -1217,7 +1217,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="step-2-draw-markers-and-initialize-weights" class="slide level2">
 <h2>Step 2: Draw markers and initialize weights</h2>
-<div id="a46d7e2e" class="cell" data-execution_count="9">
+<div id="054edc5c" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" data-code-line-numbers="1-11|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>particles <span class="op">=</span> ParticlesSPH(</span>
 <span id="cb2-2"><a></a>    comm_world<span class="op">=</span><span class="va">None</span>,          <span class="co"># no MPI for this example</span></span>
 <span id="cb2-3"><a></a>    loading_params<span class="op">=</span>loading_params,</span>
@@ -1242,7 +1242,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="step-3-evaluate-the-sph-density" class="slide level2">
 <h2>Step 3: Evaluate the SPH density</h2>
-<div id="ccede231" class="cell" data-execution_count="10">
+<div id="f468eb74" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="2-3|5-6|8-13|15-17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># evaluation grid</span></span>
 <span id="cb3-2"><a></a>eta1 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">100</span>)</span>
 <span id="cb3-3"><a></a>ee1, ee2, ee3 <span class="op">=</span> np.meshgrid(eta1, np.array([<span class="fl">0.0</span>]), np.array([<span class="fl">0.0</span>]), indexing<span class="op">=</span><span class="st">"ij"</span>)</span>
@@ -1267,7 +1267,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="result-exact-vs.-sph" class="slide level2">
 <h2>Result: exact vs.&nbsp;SPH</h2>
-<div id="13f5c26d" class="cell" data-execution_count="11">
+<div id="b71a1d80" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1284,7 +1284,7 @@ w_i(t) = \frac{\rho^\textrm{vol}(t, \mathbf x_i(t))}{s^\textrm{vol}(t, \mathbf x
 </section>
 <section id="sph-smoothing-kernels" class="slide level2">
 <h2>SPH smoothing kernels</h2>
-<div id="33ca2a5d" class="cell" data-execution_count="12">
+<div id="26a01a8a" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1302,7 +1302,7 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </section>
 <section id="comparing-sph-kernels" class="slide level2">
 <h2>Comparing SPH kernels</h2>
-<div id="5727ba17" class="cell" data-execution_count="13">
+<div id="f89aa089" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1312,6 +1312,143 @@ W_h(\mathbf{x}) = \frac{1}{h}\,W\!\left(\frac{|\mathbf{x}|}{h}\right)
 </div>
 </div>
 <p>All three kernels recover the density well.</p>
+</section></section>
+<section>
+<section id="practical-part-ii-2d-density-evaluation" class="title-slide slide level1 center">
+<h1>Practical Part II: 2D Density Evaluation</h1>
+
+</section>
+<section id="overview-2" class="slide level2">
+<h2>Overview</h2>
+<p>We extend the SPH density evaluation to <strong>2D</strong> using Struphy.</p>
+<p><strong>Goal:</strong> recover <span class="math inline">\(\rho(\eta_1,\eta_2) = 1.5 + \cos(2\pi\eta_1)\cos(2\pi\eta_2)\qquad\qquad\)</span> on <span class="math inline">\((\eta_1,\eta_2)\in[0,1]^2\quad\,\)</span> from <span class="math inline">\(N\,\)</span> markers.</p>
+<div class="fragment">
+<p><strong>Steps:</strong></p>
+<ol type="1">
+<li>Define domain, background density, and 2D perturbation</li>
+<li>Create a <code>ParticlesSPH</code> object and draw markers on a <span class="math inline">\(12\times12\quad\)</span> grid</li>
+<li>Initialize weights from the background density</li>
+<li>Evaluate the 2D SPH density estimate with <code>gaussian_2d</code></li>
+<li>Compare with the exact solution</li>
+</ol>
+<p>The corresponding test is <code>test_sph_evaluation_2d</code> in <code>struphy/src/struphy/pic/tests/test_sph.py</code>.</p>
+</div>
+</section>
+<section id="target-density-1" class="slide level2">
+<h2>Target density</h2>
+<div id="5ea008c6" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-15-output-1.png" class="quarto-figure quarto-figure-center" width="466" height="325"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+\rho(\eta_1,\eta_2) = \underbrace{1.5}_{\text{background}} + \underbrace{\cos(2\pi\eta_1)\cos(2\pi\eta_2)}_{\text{perturbation}},
+\qquad (\eta_1,\eta_2)\in[0,1]^2
+\]</span></p>
+</section>
+<section id="step-1-domain-background-and-particles-1" class="slide level2">
+<h2>Step 1: Domain, background, and particles</h2>
+<div id="f1d2b8ef" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="1-2|4-7|9-12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># 2D domain; logical coordinates (eta1, eta2) in [0,1]^2</span></span>
+<span id="cb5-2"><a></a>dom2d <span class="op">=</span> domains.Cuboid(l1<span class="op">=</span><span class="fl">1.0</span>, r1<span class="op">=</span><span class="fl">2.0</span>, l2<span class="op">=</span><span class="fl">0.0</span>, r2<span class="op">=</span><span class="fl">2.0</span>, l3<span class="op">=</span><span class="fl">100.0</span>, r3<span class="op">=</span><span class="fl">200.0</span>)</span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="co"># background n=1.5, perturbation: rho = 1.5 + cos(2pi*eta1)*cos(2pi*eta2)</span></span>
+<span id="cb5-5"><a></a>bg2d <span class="op">=</span> equils.ConstantVelocity(n<span class="op">=</span><span class="fl">1.5</span>, density_profile<span class="op">=</span><span class="st">"constant"</span>)</span>
+<span id="cb5-6"><a></a>bg2d.domain <span class="op">=</span> dom2d</span>
+<span id="cb5-7"><a></a>pert2d <span class="op">=</span> {<span class="st">"n"</span>: perturbations.ModesCosCos(ls<span class="op">=</span>(<span class="dv">1</span>,), ms<span class="op">=</span>(<span class="dv">1</span>,), amps<span class="op">=</span>(<span class="fl">1.0</span>,))}</span>
+<span id="cb5-8"><a></a></span>
+<span id="cb5-9"><a></a><span class="co"># tesselation: 16 markers per box on a 12x12 grid</span></span>
+<span id="cb5-10"><a></a>loading2d  <span class="op">=</span> LoadingParameters(ppb<span class="op">=</span><span class="dv">16</span>, loading<span class="op">=</span><span class="st">"tesselation"</span>)</span>
+<span id="cb5-11"><a></a>boundary2d <span class="op">=</span> BoundaryParameters(bc_sph<span class="op">=</span>(<span class="st">"periodic"</span>, <span class="st">"periodic"</span>, <span class="st">"periodic"</span>))</span>
+<span id="cb5-12"><a></a>sorting2d  <span class="op">=</span> SortingParameters(boxes_per_dim<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-2-draw-markers-and-initialize-weights-1" class="slide level2">
+<h2>Step 2: Draw markers and initialize weights</h2>
+<div id="d0ca929f" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-code-line-numbers="1-11|13-14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>particles2d <span class="op">=</span> ParticlesSPH(</span>
+<span id="cb6-2"><a></a>    comm_world<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb6-3"><a></a>    loading_params<span class="op">=</span>loading2d,</span>
+<span id="cb6-4"><a></a>    boundary_params<span class="op">=</span>boundary2d,</span>
+<span id="cb6-5"><a></a>    sorting_params<span class="op">=</span>sorting2d,</span>
+<span id="cb6-6"><a></a>    bufsize<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb6-7"><a></a>    domain<span class="op">=</span>dom2d,</span>
+<span id="cb6-8"><a></a>    background<span class="op">=</span>bg2d,</span>
+<span id="cb6-9"><a></a>    perturbations<span class="op">=</span>pert2d,</span>
+<span id="cb6-10"><a></a>    n_as_volume_form<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-11"><a></a>)</span>
+<span id="cb6-12"><a></a></span>
+<span id="cb6-13"><a></a>particles2d.draw_markers(sort<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-14"><a></a>particles2d.initialize_weights()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<ul>
+<li>Markers placed on a <span class="math inline">\(12\times12\quad\)</span> tesselation grid (<span class="math inline">\(N = 12^2 \times 16 = 2304\qquad\,\)</span> markers)</li>
+<li>Kernel width <span class="math inline">\(h_1 = h_2 = \tfrac{1}{12}\quad\,\)</span> matches the box size</li>
+</ul>
+</div>
+</section>
+<section id="step-3-evaluate-the-sph-density-1" class="slide level2">
+<h2>Step 3: Evaluate the SPH density</h2>
+<div id="651d99cc" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-code-line-numbers="2-4|6|8-13|15-17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># evaluation grid</span></span>
+<span id="cb7-2"><a></a>eta1_2d <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">50</span>)</span>
+<span id="cb7-3"><a></a>eta2_2d <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">50</span>)</span>
+<span id="cb7-4"><a></a>ee1_2d, ee2_2d, ee3_2d <span class="op">=</span> np.meshgrid(eta1_2d, eta2_2d, np.array([<span class="fl">0.0</span>]), indexing<span class="op">=</span><span class="st">"ij"</span>)</span>
+<span id="cb7-5"><a></a></span>
+<span id="cb7-6"><a></a>h2d <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">12</span>  <span class="co"># bandwidth = box size</span></span>
+<span id="cb7-7"><a></a></span>
+<span id="cb7-8"><a></a>rho_sph_2d <span class="op">=</span> particles2d.eval_density(</span>
+<span id="cb7-9"><a></a>    ee1_2d, ee2_2d, ee3_2d,</span>
+<span id="cb7-10"><a></a>    h1<span class="op">=</span>h2d, h2<span class="op">=</span>h2d, h3<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb7-11"><a></a>    kernel_type<span class="op">=</span><span class="st">"gaussian_2d"</span>,</span>
+<span id="cb7-12"><a></a>    derivative<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb7-13"><a></a>)</span>
+<span id="cb7-14"><a></a></span>
+<span id="cb7-15"><a></a>rho_exact_2d <span class="op">=</span> <span class="fl">1.5</span> <span class="op">+</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> ee1_2d) <span class="op">*</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> ee2_2d)</span>
+<span id="cb7-16"><a></a>err_2d <span class="op">=</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(np.array(rho_sph_2d).squeeze() <span class="op">-</span> rho_exact_2d.squeeze())) <span class="op">/</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(rho_exact_2d))</span>
+<span id="cb7-17"><a></a><span class="bu">print</span>(<span class="ss">f"Max relative error: </span><span class="sc">{</span>err_2d<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max relative error: 0.0061</code></pre>
+</div>
+</div>
+</section>
+<section id="result-exact-vs.-sph-1" class="slide level2">
+<h2>Result: exact vs.&nbsp;SPH</h2>
+<div id="f9605010" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/cell-19-output-1.png" class="quarto-figure quarto-figure-center" width="937" height="325"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="text-align: center;">
+<p><span class="math display">\[
+\rho_{h,N}(\eta_1,\eta_2) = \sum_i w_i\, W_h(\eta_1 - \eta_1^i,\,\eta_2 - \eta_2^i)
+\approx 1.5 + \cos(2\pi\eta_1)\cos(2\pi\eta_2)
+\]</span></p>
+</div>
+</section>
+<section id="convergence-role-of-h-and-n" class="slide level2">
+<h2>Convergence: role of <span class="math inline">\(h\)</span> and <span class="math inline">\(N\)</span></h2>
+<div class="columns">
+<div class="column" style="width:52%;">
+<p><img data-src="sph_convergence.png" style="width:100.0%"></p>
+</div><div class="column" style="width:48%;">
+<p><strong>Two competing sources of error:</strong></p>
+<ul>
+<li><strong>Kernel width bias</strong> (large <span class="math inline">\(h\)</span>, right): kernel too wide — over-smoothing of sharp features</li>
+<li><strong>Sampling variance</strong> (small <span class="math inline">\(h\)</span>, left): too few markers inside the kernel support</li>
+</ul>
+<p><strong>Optimal kernel width</strong> (red curve): trades off the two effects; as <span class="math inline">\(N\uparrow\)</span> the optimal <span class="math inline">\(h\)</span> shrinks — more markers allow a finer kernel.</p>
+<p><strong>Convergence:</strong> along the red curve the minimum error decreases with <span class="math inline">\(N\)</span>. Together <span class="math inline">\(h\to 0\)</span>, <span class="math inline">\(N\to\infty\)</span> with <span class="math inline">\(N h^d \to\infty\)</span> ensures <span class="math inline">\(\rho_{h,N}\to\rho\)</span>.</p>
+</div></div>
 
 
 </section></section>

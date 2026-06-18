@@ -397,5 +397,54 @@
     "title": "Meshless  Structure-Preserving  Algorithms",
     "section": "Comparing SPH kernels",
     "text": "Comparing SPH kernels\n\n\n\n\n\n\n\n\n\nAll three kernels recover the density well."
+  },
+  {
+    "objectID": "index.html#overview-2",
+    "href": "index.html#overview-2",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Overview",
+    "text": "Overview\nWe extend the SPH density evaluation to 2D using Struphy.\nGoal: recover \\(\\rho(\\eta_1,\\eta_2) = 1.5 + \\cos(2\\pi\\eta_1)\\cos(2\\pi\\eta_2)\\qquad\\qquad\\) on \\((\\eta_1,\\eta_2)\\in[0,1]^2\\quad\\,\\) from \\(N\\,\\) markers.\n\nSteps:\n\nDefine domain, background density, and 2D perturbation\nCreate a ParticlesSPH object and draw markers on a \\(12\\times12\\quad\\) grid\nInitialize weights from the background density\nEvaluate the 2D SPH density estimate with gaussian_2d\nCompare with the exact solution\n\nThe corresponding test is test_sph_evaluation_2d in struphy/src/struphy/pic/tests/test_sph.py."
+  },
+  {
+    "objectID": "index.html#target-density-1",
+    "href": "index.html#target-density-1",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Target density",
+    "text": "Target density\n\n\n\n\n\n\n\n\n\n\\[\n\\rho(\\eta_1,\\eta_2) = \\underbrace{1.5}_{\\text{background}} + \\underbrace{\\cos(2\\pi\\eta_1)\\cos(2\\pi\\eta_2)}_{\\text{perturbation}},\n\\qquad (\\eta_1,\\eta_2)\\in[0,1]^2\n\\]"
+  },
+  {
+    "objectID": "index.html#step-1-domain-background-and-particles-1",
+    "href": "index.html#step-1-domain-background-and-particles-1",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Step 1: Domain, background, and particles",
+    "text": "Step 1: Domain, background, and particles\n\n# 2D domain; logical coordinates (eta1, eta2) in [0,1]^2\ndom2d = domains.Cuboid(l1=1.0, r1=2.0, l2=0.0, r2=2.0, l3=100.0, r3=200.0)\n\n# background n=1.5, perturbation: rho = 1.5 + cos(2pi*eta1)*cos(2pi*eta2)\nbg2d = equils.ConstantVelocity(n=1.5, density_profile=\"constant\")\nbg2d.domain = dom2d\npert2d = {\"n\": perturbations.ModesCosCos(ls=(1,), ms=(1,), amps=(1.0,))}\n\n# tesselation: 16 markers per box on a 12x12 grid\nloading2d  = LoadingParameters(ppb=16, loading=\"tesselation\")\nboundary2d = BoundaryParameters(bc_sph=(\"periodic\", \"periodic\", \"periodic\"))\nsorting2d  = SortingParameters(boxes_per_dim=(12, 12, 1))"
+  },
+  {
+    "objectID": "index.html#step-2-draw-markers-and-initialize-weights-1",
+    "href": "index.html#step-2-draw-markers-and-initialize-weights-1",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Step 2: Draw markers and initialize weights",
+    "text": "Step 2: Draw markers and initialize weights\n\nparticles2d = ParticlesSPH(\n    comm_world=None,\n    loading_params=loading2d,\n    boundary_params=boundary2d,\n    sorting_params=sorting2d,\n    bufsize=1.0,\n    domain=dom2d,\n    background=bg2d,\n    perturbations=pert2d,\n    n_as_volume_form=True,\n)\n\nparticles2d.draw_markers(sort=False)\nparticles2d.initialize_weights()\n\n\n\nMarkers placed on a \\(12\\times12\\quad\\) tesselation grid (\\(N = 12^2 \\times 16 = 2304\\qquad\\,\\) markers)\nKernel width \\(h_1 = h_2 = \\tfrac{1}{12}\\quad\\,\\) matches the box size"
+  },
+  {
+    "objectID": "index.html#step-3-evaluate-the-sph-density-1",
+    "href": "index.html#step-3-evaluate-the-sph-density-1",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Step 3: Evaluate the SPH density",
+    "text": "Step 3: Evaluate the SPH density\n\n# evaluation grid\neta1_2d = np.linspace(0, 1.0, 50)\neta2_2d = np.linspace(0, 1.0, 50)\nee1_2d, ee2_2d, ee3_2d = np.meshgrid(eta1_2d, eta2_2d, np.array([0.0]), indexing=\"ij\")\n\nh2d = 1.0 / 12  # bandwidth = box size\n\nrho_sph_2d = particles2d.eval_density(\n    ee1_2d, ee2_2d, ee3_2d,\n    h1=h2d, h2=h2d, h3=1.0,\n    kernel_type=\"gaussian_2d\",\n    derivative=0,\n)\n\nrho_exact_2d = 1.5 + np.cos(2 * np.pi * ee1_2d) * np.cos(2 * np.pi * ee2_2d)\nerr_2d = np.max(np.abs(np.array(rho_sph_2d).squeeze() - rho_exact_2d.squeeze())) / np.max(np.abs(rho_exact_2d))\nprint(f\"Max relative error: {err_2d:.4f}\")\n\nMax relative error: 0.0061"
+  },
+  {
+    "objectID": "index.html#result-exact-vs.-sph-1",
+    "href": "index.html#result-exact-vs.-sph-1",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Result: exact vs. SPH",
+    "text": "Result: exact vs. SPH\n\n\n\n\n\n\n\n\n\n\n\\[\n\\rho_{h,N}(\\eta_1,\\eta_2) = \\sum_i w_i\\, W_h(\\eta_1 - \\eta_1^i,\\,\\eta_2 - \\eta_2^i)\n\\approx 1.5 + \\cos(2\\pi\\eta_1)\\cos(2\\pi\\eta_2)\n\\]"
+  },
+  {
+    "objectID": "index.html#convergence-role-of-h-and-n",
+    "href": "index.html#convergence-role-of-h-and-n",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "Convergence: role of \\(h\\) and \\(N\\)",
+    "text": "Convergence: role of \\(h\\) and \\(N\\)\n\n\n\n\nTwo competing sources of error:\n\nKernel width bias (large \\(h\\), right): kernel too wide — over-smoothing of sharp features\nSampling variance (small \\(h\\), left): too few markers inside the kernel support\n\nOptimal kernel width (red curve): trades off the two effects; as \\(N\\uparrow\\) the optimal \\(h\\) shrinks — more markers allow a finer kernel.\nConvergence: along the red curve the minimum error decreases with \\(N\\). Together \\(h\\to 0\\), \\(N\\to\\infty\\) with \\(N h^d \\to\\infty\\) ensures \\(\\rho_{h,N}\\to\\rho\\)."
   }
 ]

@@ -1808,3 +1808,175 @@ plt.show()
 All three kernels recover the density well.
 
 
+# Practical Part II: 2D Density Evaluation
+
+
+## Overview
+
+We extend the SPH density evaluation to **2D** using Struphy.
+
+**Goal:** recover $\rho(\eta_1,\eta_2) = 1.5 + \cos(2\pi\eta_1)\cos(2\pi\eta_2)\qquad\qquad$ on $(\eta_1,\eta_2)\in[0,1]^2\quad\,$ from $N\,$ markers.
+
+. . .
+
+**Steps:**
+
+1. Define domain, background density, and 2D perturbation
+2. Create a `ParticlesSPH` object and draw markers on a $12\times12\quad$ grid
+3. Initialize weights from the background density
+4. Evaluate the 2D SPH density estimate with `gaussian_2d`
+5. Compare with the exact solution
+
+The corresponding test is `test_sph_evaluation_2d` in
+`struphy/src/struphy/pic/tests/test_sph.py`.
+
+
+## Target density
+
+```{python}
+#| echo: false
+#| fig-align: center
+eta1_t = np.linspace(0, 1.0, 200)
+eta2_t = np.linspace(0, 1.0, 200)
+G1, G2 = np.meshgrid(eta1_t, eta2_t, indexing="ij")
+rho_ex_t = 1.5 + np.cos(2 * np.pi * G1) * np.cos(2 * np.pi * G2)
+
+fig, ax = plt.subplots(figsize=(5.0, 3.5))
+im = ax.pcolormesh(G1, G2, rho_ex_t, cmap='RdBu_r', shading='auto')
+fig.colorbar(im, ax=ax, label=r'$\rho$')
+ax.set_xlabel(r'$\eta_1$', fontsize=13)
+ax.set_ylabel(r'$\eta_2$', fontsize=13)
+plt.tight_layout()
+plt.show()
+```
+
+$$
+\rho(\eta_1,\eta_2) = \underbrace{1.5}_{\text{background}} + \underbrace{\cos(2\pi\eta_1)\cos(2\pi\eta_2)}_{\text{perturbation}},
+\qquad (\eta_1,\eta_2)\in[0,1]^2
+$$
+
+
+## Step 1: Domain, background, and particles
+
+```{python}
+#| code-line-numbers: "1-2|4-7|9-12"
+# 2D domain; logical coordinates (eta1, eta2) in [0,1]^2
+dom2d = domains.Cuboid(l1=1.0, r1=2.0, l2=0.0, r2=2.0, l3=100.0, r3=200.0)
+
+# background n=1.5, perturbation: rho = 1.5 + cos(2pi*eta1)*cos(2pi*eta2)
+bg2d = equils.ConstantVelocity(n=1.5, density_profile="constant")
+bg2d.domain = dom2d
+pert2d = {"n": perturbations.ModesCosCos(ls=(1,), ms=(1,), amps=(1.0,))}
+
+# tesselation: 16 markers per box on a 12x12 grid
+loading2d  = LoadingParameters(ppb=16, loading="tesselation")
+boundary2d = BoundaryParameters(bc_sph=("periodic", "periodic", "periodic"))
+sorting2d  = SortingParameters(boxes_per_dim=(12, 12, 1))
+```
+
+
+## Step 2: Draw markers and initialize weights
+
+```{python}
+#| code-line-numbers: "1-11|13-14"
+particles2d = ParticlesSPH(
+    comm_world=None,
+    loading_params=loading2d,
+    boundary_params=boundary2d,
+    sorting_params=sorting2d,
+    bufsize=1.0,
+    domain=dom2d,
+    background=bg2d,
+    perturbations=pert2d,
+    n_as_volume_form=True,
+)
+
+particles2d.draw_markers(sort=False)
+particles2d.initialize_weights()
+```
+
+. . .
+
+- Markers placed on a $12\times12\quad$ tesselation grid ($N = 12^2 \times 16 = 2304\qquad\,$ markers)
+- Kernel width $h_1 = h_2 = \tfrac{1}{12}\quad\,$ matches the box size
+
+
+## Step 3: Evaluate the SPH density
+
+```{python}
+#| code-line-numbers: "2-4|6|8-13|15-17"
+# evaluation grid
+eta1_2d = np.linspace(0, 1.0, 50)
+eta2_2d = np.linspace(0, 1.0, 50)
+ee1_2d, ee2_2d, ee3_2d = np.meshgrid(eta1_2d, eta2_2d, np.array([0.0]), indexing="ij")
+
+h2d = 1.0 / 12  # bandwidth = box size
+
+rho_sph_2d = particles2d.eval_density(
+    ee1_2d, ee2_2d, ee3_2d,
+    h1=h2d, h2=h2d, h3=1.0,
+    kernel_type="gaussian_2d",
+    derivative=0,
+)
+
+rho_exact_2d = 1.5 + np.cos(2 * np.pi * ee1_2d) * np.cos(2 * np.pi * ee2_2d)
+err_2d = np.max(np.abs(np.array(rho_sph_2d).squeeze() - rho_exact_2d.squeeze())) / np.max(np.abs(rho_exact_2d))
+print(f"Max relative error: {err_2d:.4f}")
+```
+
+
+## Result: exact vs. SPH
+
+```{python}
+#| echo: false
+#| fig-align: center
+fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+
+sph_arr = np.array(rho_sph_2d).squeeze()
+ex_arr  = rho_exact_2d.squeeze()
+vmin, vmax = ex_arr.min(), ex_arr.max()
+X = ee1_2d.squeeze()
+Y = ee2_2d.squeeze()
+
+im0 = axes[0].pcolormesh(X, Y, ex_arr, cmap='RdBu_r', vmin=vmin, vmax=vmax, shading='auto')
+axes[0].set_title('Exact', fontsize=13)
+axes[0].set_xlabel(r'$\eta_1$', fontsize=12)
+axes[0].set_ylabel(r'$\eta_2$', fontsize=12)
+fig.colorbar(im0, ax=axes[0])
+
+im1 = axes[1].pcolormesh(X, Y, sph_arr, cmap='RdBu_r', vmin=vmin, vmax=vmax, shading='auto')
+axes[1].set_title(f'SPH (gaussian_2d)  —  max rel. err = {err_2d:.4f}', fontsize=13)
+axes[1].set_xlabel(r'$\eta_1$', fontsize=12)
+fig.colorbar(im1, ax=axes[1])
+
+plt.tight_layout()
+plt.show()
+```
+
+:::{style="text-align: center;"}
+$$
+\rho_{h,N}(\eta_1,\eta_2) = \sum_i w_i\, W_h(\eta_1 - \eta_1^i,\,\eta_2 - \eta_2^i)
+\approx 1.5 + \cos(2\pi\eta_1)\cos(2\pi\eta_2)
+$$
+:::
+
+
+## Convergence: role of $h$ and $N$
+
+::: {.columns}
+::: {.column width="52%"}
+![](sph_convergence.png){width=100%}
+:::
+::: {.column width="48%"}
+**Two competing sources of error:**
+
+- **Kernel width bias** (large $h$, right): kernel too wide — over-smoothing of sharp features
+- **Sampling variance** (small $h$, left): too few markers inside the kernel support
+
+**Optimal kernel width** (red curve): trades off the two effects;
+as $N\uparrow$ the optimal $h$ shrinks — more markers allow a finer kernel.
+
+**Convergence:** along the red curve the minimum error decreases with $N$.
+Together $h\to 0$, $N\to\infty$ with $N h^d \to\infty$ ensures $\rho_{h,N}\to\rho$.
+:::
+:::
