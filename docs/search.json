@@ -28,6 +28,13 @@
     "text": "Key ideas of Part II\n\nFunctions (0-forms) and volume forms\n\n\\[\n\\rho:\\quad \\mathbf x \\in \\Omega \\mapsto \\rho(\\mathbf x) \\in \\mathbb R,\\qquad\\quad \\rho^\\textrm{vol}:\\quad \\Omega \\subset_\\textrm{open} \\mathbb R^3 \\mapsto \\int_\\Omega \\rho^{\\textrm{vol}}(\\mathbf x) \\,\\mathrm d \\mathbf x \\in \\mathbb R\n\\]\n\nDiscrete Lagrangians\n\n\\[\n\\rho^\\textrm{vol}(t, \\mathbf x) \\approx \\rho_h^\\textrm{vol}(t, \\mathbf x) = \\sum_{i=1}^N w_i \\, \\delta(\\mathbf x - \\mathbf x_i(t)) \\quad \\Rightarrow \\quad \\mathcal A(\\mathbf u, \\rho, s) \\approx \\mathcal A_h(\\mathbf x_1, \\ldots, \\mathbf x_N, \\dot{\\mathbf x}_1, \\ldots, \\dot{\\mathbf x}_N)\n\\]\n\nSmoothed-particle hydrodynamics (SPH)\n\n\\[\nA(\\mathbf x) = \\int A(\\mathbf y) \\delta(\\mathbf x - \\mathbf y) \\, d\\mathbf y \\approx \\int A(\\mathbf y) W(\\mathbf x - \\mathbf y, h) \\, d\\mathbf y \\approx \\sum_{i=1}^N w_i A(\\mathbf x_i) W(\\mathbf x - \\mathbf x_i, h)\n\\]"
   },
   {
+    "objectID": "index.html#references",
+    "href": "index.html#references",
+    "title": "Meshless  Structure-Preserving  Algorithms",
+    "section": "References",
+    "text": "References\n\n[1] J. J. Monaghan, “Smoothed particle hydrodynamics”, Rep. Prog. Phys. 68 (2005) 1703–1759\n[2] V. Springel, “Smoothed Particle Hydrodynamics in Astrophysics”, Annu. Rev. Astron. Astrophys. 2010. 48:391–430\n[3] D.J. Prince, “Smoothed particle hydrodynamics and magnetohydrodynamics”, J. Comp. Phys. 231 (2012) 759–794\n[4] J. Bonet et al., “Variational formulation for the smooth particle hydrodynamics (SPH) simulation of fluid and solid problems”, Comp. Meth. in App. Mech. and Eng., Volume 193, Issues 12–14, 2004.\n\n\n\nThese slides will be persistent at:\nhttps://spossann.github.io/2026_SPEGEO_Strasbourg_school/"
+  },
+  {
     "objectID": "index.html#key-ideas-of-part-iii",
     "href": "index.html#key-ideas-of-part-iii",
     "title": "Meshless  Structure-Preserving  Algorithms",
@@ -40,13 +47,6 @@
     "title": "Meshless  Structure-Preserving  Algorithms",
     "section": "Key ideas of Part III (cont.)",
     "text": "Key ideas of Part III (cont.)\n\nHands-on session: Implementing and running SPH simulations with Struphy\n\n\nExploring the Struphy API and documentation\nUnderstanding SPH kernel density evaluations (using MPI)\nRunning tutorials on SPH methods for fluid dynamics\n\nFluid in a given Beltrami force field\nMeshless gas expansion\nDamped sound wave\nHagen-Poiseuille flow in a pipe\nDam break problem\nSod shock tube … ?\n\n\nTry installing Struphy according to the instructions in the README before the hands-on session."
-  },
-  {
-    "objectID": "index.html#references",
-    "href": "index.html#references",
-    "title": "Meshless  Structure-Preserving  Algorithms",
-    "section": "References",
-    "text": "References\n\n[1] J. J. Monaghan, “Smoothed particle hydrodynamics”, Rep. Prog. Phys. 68 (2005) 1703–1759\n[2] V. Springel, “Smoothed Particle Hydrodynamics in Astrophysics”, Annu. Rev. Astron. Astrophys. 2010. 48:391–430\n[3] D.J. Prince, “Smoothed particle hydrodynamics and magnetohydrodynamics”, J. Comp. Phys. 231 (2012) 759–794\n\nThese slides will be persistent at:\nhttps://spossann.github.io/2026_SPEGEO_Strasbourg_school/"
   },
   {
     "objectID": "index.html#variational-principles-vs.-newtonian-mechanics",
@@ -347,7 +347,7 @@
     "href": "index.html#f.-density-estimation-and-smoothing-cont.",
     "title": "Meshless  Structure-Preserving  Algorithms",
     "section": "5f. Density estimation and smoothing (cont.)",
-    "text": "5f. Density estimation and smoothing (cont.)\nThe question of convergence is important:\n\n\\(\\rho_{h,N} \\to \\rho^\\textrm{vol}\\quad\\,\\) as \\(N \\to \\infty\\quad\\) and \\(h\\,\\) fixed\n\\(\\rho_{h,N} \\to \\rho^\\textrm{vol}\\quad\\,\\) as \\(h \\to 0\\quad\\) and \\(Nh^3\\,\\,\\) fixed\n\nThese are non-trivial questions for later."
+    "text": "5f. Density estimation and smoothing (cont.)\nThe question of convergence is important:\n\n\\(\\rho_{h,N} \\to \\rho^\\textrm{vol}\\quad\\,\\) as \\(N \\to \\infty\\quad\\) and \\(h\\,\\) fixed ?\n\\(\\rho_{h,N} \\to \\rho^\\textrm{vol}\\quad\\,\\) as \\(h \\to 0\\quad\\) and \\(Nh^3\\,\\,\\) fixed ?\n\nThese are non-trivial questions we will answer empirically (via simulation).\nOther quantities, like the velocity, can also be evaluated in a similar way, e.g.\n\\[\n\\mathbf u_{h,N}(t, \\mathbf x) = \\sum_i w_i\\frac{\\mathbf v_i(t)}{\\rho_{h,N}(\\mathbf x_i(t))}\\,W_h(\\mathbf x - \\mathbf x^i(t)),\n\\]\nwith \\(\\mathbf v_i = \\mathbf u(t, \\mathbf x^i(t)) = \\dot{\\mathbf x}^i(t)\\)."
   },
   {
     "objectID": "index.html#overview-1",
@@ -466,7 +466,7 @@
     "href": "index.html#viscous-euler-with-sph-particle-equations",
     "title": "Meshless  Structure-Preserving  Algorithms",
     "section": "Viscous Euler with SPH: Particle equations",
-    "text": "Viscous Euler with SPH: Particle equations\nEuler–Lagrange equations of \\(\\mathcal{A}_N\\,\\,\\) (with \\(\\rho_{h,N}\\,\\,\\) replacing \\(\\rho\\,\\,\\)) yield the SPH particle system:\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{x}}^i &= \\mathbf{v}_i\\,,\n    \\\\[3mm]\n    \\dot{\\mathbf{v}}_i &= -\\frac{\\nabla V(\\mathbf{x}^i)}{m}\n    \\;-\\; \\sum_{j=1}^N w_j\n      \\!\\left(\\frac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_i)+\\frac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_j)\\right)\n      \\nabla W_h(\\mathbf{x}^i-\\mathbf{x}^j)\\,,\n\\end{aligned}\n\\]\nwhere \\(\\rho_i := \\rho_{h,N}(t,\\mathbf{x}^i) = \\sum_j w_j\\,W_h(\\mathbf{x}^i-\\mathbf{x}^j)\\qquad\\,\\,\\,\\).\n\nExternal force: \\(-\\nabla V/m\\,\\,\\,\\,\\) (gravity, external pressure gradient, …)\nPressure force: \\(-\\sum_j w_j\\!\\left(\\tfrac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_i)+\\tfrac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_j)\\right)\\nabla W_h\\qquad\\,\\,\\,\\,\\,\\) — the standard SPH pressure force, here derived from a variational principle\nPair-wise anti-symmetric form ensures Newton’s third law and exact linear-momentum conservation"
+    "text": "Viscous Euler with SPH: Particle equations\nEuler–Lagrange equations of \\(\\mathcal{A}_N\\,\\,\\) (with \\(\\rho_{h,N}\\,\\,\\) replacing \\(\\rho\\,\\,\\)) yield the SPH particle system:\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{x}}^i &= \\mathbf{v}_i\\,,\n    \\\\[3mm]\n    \\dot{\\mathbf{v}}_i &= -\\frac{\\nabla V(\\mathbf{x}^i)}{m}\n    \\;-\\; \\sum_{j=1}^N w_j\n      \\!\\left(\\frac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_i)+\\frac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_j)\\right)\n      \\nabla W_h(\\mathbf{x}^i-\\mathbf{x}^j)\\,,\n\\end{aligned}\n\\]\nwhere \\(\\rho_i := \\rho_{h,N}(t,\\mathbf{x}^i) = \\sum_j w_j\\,W_h(\\mathbf{x}^i-\\mathbf{x}^j)\\qquad\\,\\,\\,\\).\n\nExternal force: \\(-\\nabla V/m\\,\\,\\,\\,\\) (gravity, external pressure gradient, …)\nPressure force: \\(-\\sum_j w_j\\!\\left(\\tfrac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_i)+\\tfrac{\\partial\\mathcal{U}}{\\partial\\rho}(\\rho_j)\\right)\\nabla W_h\\qquad\\,\\,\\,\\,\\,\\) — the standard SPH pressure force, here derived from a variational principle\nPair-wise anti-symmetric form ensures energy conservation and exact linear and angular momentum conservation"
   },
   {
     "objectID": "index.html#internal-energy-choices",
@@ -480,7 +480,7 @@
     "href": "index.html#sph-viscous-stress",
     "title": "Meshless  Structure-Preserving  Algorithms",
     "section": "SPH viscous stress",
-    "text": "SPH viscous stress\nThe SPH velocity gradient at particle \\(\\boldsymbol\\eta_i\\) is obtained by differentiating the kernel interpolant:\n\\[\n\\nabla\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\n= \\sum_l w_l\\;\\nabla W_h(\\boldsymbol\\eta_i - \\boldsymbol\\eta_l)\\otimes\\mathbf{v}_l\n\\]\nwhere \\((\\mathbf{a}\\otimes\\mathbf{b})_{jk}=a_j b_k\\qquad\\) is the outer product, so that \\((\\nabla\\mathbf{v})_{jk}=\\partial_j v_k\\qquad\\).\nThe deviatoric strain rate is the traceless symmetric part of \\(\\nabla\\mathbf{v}^{N,h}\\,\\), scaled by dynamic viscosity \\(\\mu\\):\n\\[\n\\boldsymbol\\sigma(\\boldsymbol\\eta_i)\n=\\mu\\!\\left[\n  \\nabla\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\n  +\\bigl(\\nabla\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\\bigr)^{\\!\\top}\n  -\\tfrac{2}{3}\\bigl(\\nabla\\cdot\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\\bigr)\\,\\mathbf{I}\n\\right]\n\\]\n\n\nSymmetric: \\(\\boldsymbol\\sigma=\\boldsymbol\\sigma^{\\top}\\)\nTraceless: \\(\\mathrm{tr}(\\boldsymbol\\sigma)=0\\quad\\), the isotropic divergence term cancels the trace of \\(\\nabla\\mathbf{v}+(\\nabla\\mathbf{v})^\\top\\,\\,\\,\\)"
+    "text": "SPH viscous stress\nThe SPH velocity gradient at particle \\(\\boldsymbol\\eta_i\\) is obtained by differentiating the kernel interpolant:\n\\[\n\\nabla\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\n= \\sum_l \\frac{w_l}{\\rho_{h,N}(\\boldsymbol\\eta_l)}\\;\\nabla W_h(\\boldsymbol\\eta_i - \\boldsymbol\\eta_l)\\otimes\\mathbf{v}_l\n\\]\nwhere \\((\\mathbf{a}\\otimes\\mathbf{b})_{jk}=a_j b_k\\qquad\\) is the outer product, so that \\((\\nabla\\mathbf{v})_{jk}=\\partial_j v_k\\qquad\\).\nThe deviatoric strain rate is the traceless symmetric part of \\(\\nabla\\mathbf{v}^{N,h}\\,\\), scaled by dynamic viscosity \\(\\mu\\):\n\\[\n\\boldsymbol\\sigma(\\boldsymbol\\eta_i)\n=\\mu\\!\\left[\n  \\nabla\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\n  +\\bigl(\\nabla\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\\bigr)^{\\!\\top}\n  -\\tfrac{2}{3}\\bigl(\\nabla\\cdot\\mathbf{v}^{N,h}(\\boldsymbol\\eta_i)\\bigr)\\,\\mathbf{I}\n\\right]\n\\]\n\n\nSymmetric: \\(\\boldsymbol\\sigma=\\boldsymbol\\sigma^{\\top}\\)\nTraceless: \\(\\mathrm{tr}(\\boldsymbol\\sigma)=0\\quad\\), the isotropic divergence term cancels the trace of \\(\\nabla\\mathbf{v}+(\\nabla\\mathbf{v})^\\top\\,\\,\\,\\)"
   },
   {
     "objectID": "index.html#sph-viscous-force",

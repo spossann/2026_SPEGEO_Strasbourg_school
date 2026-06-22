@@ -141,6 +141,27 @@ $$
  A(\mathbf x) = \int A(\mathbf y) \delta(\mathbf x - \mathbf y) \, d\mathbf y \approx \int A(\mathbf y) W(\mathbf x - \mathbf y, h) \, d\mathbf y \approx \sum_{i=1}^N w_i A(\mathbf x_i) W(\mathbf x - \mathbf x_i, h)
 $$
 
+
+## References
+
+
+- [1] J. J. Monaghan, "Smoothed particle hydrodynamics", Rep. Prog. Phys. 68 (2005) 1703–1759
+- [2] V. Springel, "Smoothed Particle Hydrodynamics in Astrophysics", Annu. Rev. Astron. Astrophys. 2010. 48:391–430
+- [3] D.J. Prince, "Smoothed particle hydrodynamics and magnetohydrodynamics", J. Comp. Phys. 231 (2012) 759–794
+- [4] J. Bonet et al., "Variational formulation for the smooth particle hydrodynamics (SPH) simulation of fluid and solid problems", Comp. Meth. in App. Mech. and Eng., Volume 193, Issues 12–14, 2004.
+
+:::: {.columns}
+::: {.column width="50%"}
+These slides will be persistent at:
+
+[https://spossann.github.io/2026_SPEGEO_Strasbourg_school/]()
+:::
+::: {.column width="50%" style="text-align: center;"}
+![](qr-code-slides.png){width=40%}
+:::
+::::
+
+
 ## Key ideas of Part III
 
 
@@ -170,21 +191,6 @@ $$
 
 **Try installing Struphy according to the instructions in the [README](https://github.com/struphy-hub/struphy/blob/main/README.md) before the hands-on session.**
 
-
-## References
-
-
-- [1] J. J. Monaghan, "Smoothed particle hydrodynamics", Rep. Prog. Phys. 68 (2005) 1703–1759
-- [2] V. Springel, "Smoothed Particle Hydrodynamics in Astrophysics", Annu. Rev. Astron. Astrophys. 2010. 48:391–430
-- [3] D.J. Prince, "Smoothed particle hydrodynamics and magnetohydrodynamics", J. Comp. Phys. 231 (2012) 759–794
-
-These slides will be persistent at:
-
-[https://spossann.github.io/2026_SPEGEO_Strasbourg_school/]()
-
-:::{style="text-align: center;"}
-  ![](qr-code-slides.png){width=15%}
-:::
 
 
 # Part I: Theory - From Lagrangian to Eulerian coordinates via Euler-Poincaré reduction
@@ -1599,10 +1605,18 @@ plt.show()
 
 The question of convergence is important:
 
-- $\rho_{h,N} \to \rho^\textrm{vol}\quad\,$ as $N \to \infty\quad$ and $h\,$ fixed
-- $\rho_{h,N} \to \rho^\textrm{vol}\quad\,$ as $h \to 0\quad$ and $Nh^3\,\,$ fixed
+- $\rho_{h,N} \to \rho^\textrm{vol}\quad\,$ as $N \to \infty\quad$ and $h\,$ fixed ? 
+- $\rho_{h,N} \to \rho^\textrm{vol}\quad\,$ as $h \to 0\quad$ and $Nh^3\,\,$ fixed ?
 
-These are non-trivial questions for later.
+These are non-trivial questions we will answer empirically (via simulation).
+
+Other quantities, like the velocity, can also be evaluated in a similar way, e.g.
+
+$$
+ \mathbf u_{h,N}(t, \mathbf x) = \sum_i w_i\frac{\mathbf v_i(t)}{\rho_{h,N}(\mathbf x_i(t))}\,W_h(\mathbf x - \mathbf x^i(t)),
+$$
+
+with $\mathbf v_i = \mathbf u(t, \mathbf x^i(t)) = \dot{\mathbf x}^i(t)$.
 
 
 # Practical Part I: Marker drawing and density evaluation
@@ -2056,7 +2070,7 @@ where $\rho_i := \rho_{h,N}(t,\mathbf{x}^i) = \sum_j w_j\,W_h(\mathbf{x}^i-\math
 
 - **External force**: $-\nabla V/m\,\,\,\,$ (gravity, external pressure gradient, …)
 - **Pressure force**: $-\sum_j w_j\!\left(\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_i)+\tfrac{\partial\mathcal{U}}{\partial\rho}(\rho_j)\right)\nabla W_h\qquad\,\,\,\,\,$ — the standard _SPH pressure force_, here **derived from a variational principle**
-- Pair-wise anti-symmetric form ensures **Newton's third law** and exact **linear-momentum conservation**
+- Pair-wise anti-symmetric form ensures **energy conservation** and exact **linear and angular momentum conservation**
 
 
 ## Internal energy choices
@@ -2094,7 +2108,7 @@ The **SPH velocity gradient** at particle $\boldsymbol\eta_i$ is obtained by dif
 
 $$
 \nabla\mathbf{v}^{N,h}(\boldsymbol\eta_i)
-= \sum_l w_l\;\nabla W_h(\boldsymbol\eta_i - \boldsymbol\eta_l)\otimes\mathbf{v}_l
+= \sum_l \frac{w_l}{\rho_{h,N}(\boldsymbol\eta_l)}\;\nabla W_h(\boldsymbol\eta_i - \boldsymbol\eta_l)\otimes\mathbf{v}_l
 $$
 
 where $(\mathbf{a}\otimes\mathbf{b})_{jk}=a_j b_k\qquad$ is the outer product, so that $(\nabla\mathbf{v})_{jk}=\partial_j v_k\qquad$.
