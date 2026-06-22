@@ -171,6 +171,22 @@ $$
 **Try installing Struphy according to the instructions in the [README](https://github.com/struphy-hub/struphy/blob/main/README.md) before the hands-on session.**
 
 
+## References
+
+
+- [1] J. J. Monaghan, "Smoothed particle hydrodynamics", Rep. Prog. Phys. 68 (2005) 1703–1759
+- [2] V. Springel, "Smoothed Particle Hydrodynamics in Astrophysics", Annu. Rev. Astron. Astrophys. 2010. 48:391–430
+- [3] D.J. Prince, "Smoothed particle hydrodynamics and magnetohydrodynamics", J. Comp. Phys. 231 (2012) 759–794
+
+These slides will be persistent at:
+
+[https://spossann.github.io/2026_SPEGEO_Strasbourg_school/]()
+
+:::{style="text-align: center;"}
+  ![](qr-code-slides.png){width=15%}
+:::
+
+
 # Part I: Theory - From Lagrangian to Eulerian coordinates via Euler-Poincaré reduction
 
 
@@ -1162,6 +1178,8 @@ $$
 
 **The weights $w_i\,$ are constant in time, since they are defined by the initial density $\rho^\textrm{vol}(0, \mathbf x_0)\quad$ and the partition of the initial domain $\Omega_0\,$ into subregions $\Omega_0^i.$**
 
+The equation for the acceleration of the particels can  be derived from a variational principle.
+
 
 ## 5b. Approximating integrals by particles (Monte-Carlo)
 
@@ -1289,6 +1307,8 @@ $$
 
 and the weights remain constant.
 
+The equation for the acceleration of the particels can  be derived from a variational principle.
+
 
 ## 5d. Comparing the two approaches
 
@@ -1314,8 +1334,8 @@ The same discrete ansatz is obtained from two different constructions of the ini
 | | Density approach | Monte-Carlo approach |
 |---|---|---|
 | Drawing the markers | Partition $\Omega_0$ into grid cells $\Omega_0^i$ and place one marker at the cell center $\mathbf x_0^i \in \Omega_0^i\quad$. The initial markers are therefore distributed regularly. | Draw the initial markers randomly and independently, $\mathbf x_0^i \sim s^\textrm{vol}(0, \mathbf x_0)\quad\,\,$. The initial markers therefore follow the sampling density $s^\textrm{vol}$. |
-| Weights | $w_i := \int_{\Omega_0^i} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d\mathbf x_0$. | $w_i := \dfrac{\rho^\textrm{vol}(0, \mathbf x_0^i)}{s^\textrm{vol}(0, \mathbf x_0^i)}$ |
-| Comments | Needs numerical quadrature over the initial cells. | Lots of noise, but provable convergence of integrals $\sim 1/\sqrt N$. |
+| Weights | $w_i := \int_{\Omega_0^i} \rho^\textrm{vol}(0, \mathbf x_0)\,\textrm d\mathbf x_0$. | $w_i := \dfrac 1N \dfrac{\rho^\textrm{vol}(0, \mathbf x_0^i)}{s^\textrm{vol}(0, \mathbf x_0^i)}$ |
+| Comments | Needs numerical quadrature over the initial cells. | Lots of noise, but provable convergence of integrals $\sim 1/\sqrt N\,\,\,$. |
 
 
 ## 5e. Example: Pressure-less fluids in a given potential
@@ -1977,7 +1997,7 @@ $$
 as $N\uparrow\,$ the optimal $h$ shrinks — more markers allow a finer kernel.
 
 **Convergence:** along the red curve the minimum error decreases with $N$.
-Together $h\to 0\,\,$, $N\to\infty\,\,$ with $N h^d \to\infty$ ensures $\rho_{h,N}\to\rho\,\,$.
+Together $h\to 0\,\,\,$, $N\to\infty\,\,\,\,$ with $N h^d \to\infty$ ensures $\rho_{h,N}\to\rho\qquad$.
 :::
 :::
 
@@ -1999,7 +2019,7 @@ $$
 $$
 
 **Substitute the particle approximation** $\rho^{\mathrm{vol}}\approx\rho_N = \sum_{i=1}^N w_i\,\delta(\mathbf{x}-\mathbf{x}^i(t))\qquad\quad\,\,$
-and use $\mathbf{u}(t,\mathbf{x}^i(t))=\dot{\mathbf{x}}^i(t)=:\mathbf{v}_i(t)\qquad\,\,\,$:
+and use $\mathbf{u}(t,\mathbf{x}^i(t))=\dot{\mathbf{x}}^i(t)=:\mathbf{v}_i(t)\qquad\,\,\,\,$:
 
 $$
 \mathcal{A}_N
@@ -2093,7 +2113,6 @@ $$
 ::: {style="margin-top: -0.5em;"}
 - **Symmetric:** $\boldsymbol\sigma=\boldsymbol\sigma^{\top}$
 - **Traceless:** $\mathrm{tr}(\boldsymbol\sigma)=0\quad$, the isotropic divergence term cancels the trace of $\nabla\mathbf{v}+(\nabla\mathbf{v})^\top\,\,\,$
-- Evaluated once per particle $i$ and stored as 9 coefficients $-w_i\,\boldsymbol\sigma(\boldsymbol\eta_i)/\rho^{N,h}(\boldsymbol\eta_i)$
 :::
 
 
@@ -2113,6 +2132,9 @@ $$
 $$
 
 where $\boldsymbol\sigma(\boldsymbol\eta_l)\,\nabla W_h\quad$ is the **matrix–vector product** of the $3\times3\,\,$ stress tensor at $\boldsymbol\eta_l$ with the kernel gradient.
+
+- The 6 coefficients (symmetric) $-w_i\,\boldsymbol\sigma(\boldsymbol\eta_i)/\rho^{N,h}(\boldsymbol\eta_i)\qquad$ are evaluated once per particle $i$ per time step and stored in the markers array.
+- Viscous particle push: $\dot{\mathbf v}^i = \bigl(-\nabla\cdot\boldsymbol\Pi_{\mathrm{vis}}\bigr)^{N,h}(\boldsymbol\eta_i)$
 
 
 
